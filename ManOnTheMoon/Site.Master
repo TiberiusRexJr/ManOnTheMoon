@@ -237,7 +237,7 @@
         </asp:ScriptManager>
         <!-- As a link -->
         
-        <div class="container body-content">
+        <div class="container-fluid">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
