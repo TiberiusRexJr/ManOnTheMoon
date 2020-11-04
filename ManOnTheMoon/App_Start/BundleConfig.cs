@@ -22,7 +22,7 @@ namespace ManOnTheMoon
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/Site.css",
-                      "~/Content/mdb.min.css"));
+                      "~/Content/mdb.min.css","~/Content/style.css", "~/Content/dropdownHover.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",

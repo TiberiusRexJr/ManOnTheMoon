@@ -22,65 +22,171 @@
     <%Scripts.Render("~/bundles/modernizr");%>
   
 </head>
+
 <body>
- <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
-        </a>
+    <!--TopMenu_START-->
+<!-- Image and text -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav d-flex flex-row">
+      <!-- Icons -->
+      <li class="nav-item mr-3 mr-lg-0">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+      <li class="nav-item mr-3 mr-lg-0">
+          <a class="navbar-brand" href="#">
+      <img
+        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+        height="30"
+        alt=""
+        loading="lazy"
+      />
+    ManOnTheMoon
+    </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
+
+
+        <li class="nav-item mr-3 mr-lg-0">
+       <!--SearchForm sTART-->      
+    <form class="d-flex input-group w-auto">
+        <ul class="navbar-nav d-flex flex-row">
+            <li class="nav-item mr-3 mr-lg-0">
+                <div class="container-fluid">
+    <ul class="navbar-nav">
+      <!-- Icon dropdown -->
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Dropdown
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="united kingdom flag m-0"></i>
         </a>
-        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light">
-          <i class="fab fa-google-plus-g"></i>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item" href="#"
+              ><i class="united kingdom flag"></i>English
+              <i class="fa fa-check text-success ml-2"></i
+            ></a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="poland flag"></i>Polski</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="china flag"></i>中文</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="japan flag"></i>日本語</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="germany flag"></i>Deutsch</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="france flag"></i>Français</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="spain flag"></i>Español</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="russia flag"></i>Русский</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"><i class="portugal flag"></i>Português</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
+            </li>
+        </ul>
+      <input
+        type="search"
+        class="form-control"
+        placeholder="Type query"
+        aria-label="Search" name="inputSearch" size="1000" 
+      />
+      <button class="btn btn-sm btn-light" type="button"><span><i class="fas fa-search fa-lg"></i></span></button>
+    </form>
+ <!--SearchForm END-->
+        </li>
+        
+     
+    </ul>
+  </div>
+    <!--Navbar_LEFT START-->
+        
+    <div class="float-right">
+        <!--DropDown_SignIn_START-->
+        <ul class="navbar-nav d-flex flex-row">
+            
+      <li class="nav-item mr-3 mr-lg-0 dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fas fa-user"></i>Sign In
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#"><p class="font-weight-bold"><i class="fas fa-key"></i>Sign In</p></a></li>
+          <li><a class="dropdown-item" href="#"><p class="font-weight-bold"><i class="fas fa-user-edit"></i>Register</p></a></li>
+          <li><a class="dropdown-item" href="#"><p class="font-weight-bold"><i class="fas fa-clipboard-list"></i>My Orders</p></a></li>
+          <li><a class="dropdown-item" href="#">Customer Service</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+          <a class="dropdown-item" href="#"><p class="font-weight-bold"><i class="fas fa-user-cog"></i>Your Account</p></a>
+          
+
+
+          </li>
+            <li><a class="dropdown-item" href="#">Browsing History</a></li>
+        </ul>
+      </li>
+             <!--Shopping Cart_start-->
+                <li class="nav-item">
+       <ul class="navbar-nav">
+      <!-- Badge -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="badge badge-pill bg-danger">1</span>
+          <span><i class="fas fa-shopping-cart"></i></span>
+        </a>
+      </li>
+    </ul>
+      </li>
+       
+            <!--Shopping Cart_end-->
+            </ul>
+        <!--DropDown_SignIn_END-->
+
+       
+        
+        
+
+
+    </div>
+        <!--Navbar_LEFT END-->
+
 </nav>
-<!--/.Navbar -->
+    <!--TopMenu_END-->
+
+    <!--SideMenu_START-->
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+    <!--SideMenu_END-->
+
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -100,22 +206,66 @@
             </Scripts>
         </asp:ScriptManager>
         <!-- As a link -->
-   
+        
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
+
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
         </div>
       
-     <section>
+    
             <script type="text/javascript" src="Scripts/jquery.min.js"></script>
             <script type="text/javascript" src="Scripts/popper.min.js"></script>
             <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
             <script type="text/javascript" src="Scripts/mdb.min.js"></script>
-        </section>
+
+        <!--SideMenuOpen_START-->
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            /* Set the width of the side navigation to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            } 
+
+        </script>
+        <!--SideMenuOpen_END-->
+        <!--DropDown On However_START-->
+          <script>
+              const $dropdown = $(".dropdown");
+              const $dropdownToggle = $(".dropdown-toggle");
+              const $dropdownMenu = $(".dropdown-menu");
+              const showClass = "show";
+
+              $(window).on("load resize", function () {
+                  if (this.matchMedia("(min-width: 768px)").matches) {
+                      $dropdown.hover(
+                          function () {
+                              const $this = $(this);
+                              $this.addClass(showClass);
+                              $this.find($dropdownToggle).attr("aria-expanded", "true");
+                              $this.find($dropdownMenu).addClass(showClass);
+                          },
+                          function () {
+                              const $this = $(this);
+                              $this.removeClass(showClass);
+                              $this.find($dropdownToggle).attr("aria-expanded", "false");
+                              $this.find($dropdownMenu).removeClass(showClass);
+                          }
+                      );
+                  } else {
+                      $dropdown.off("mouseenter mouseleave");
+                  }
+              });
+          </script>
+        <!--DropDown On However_END-->
+
     </form>
 </body>
 </html>
