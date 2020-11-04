@@ -177,6 +177,36 @@
 </nav>
     <!--TopMenu_END-->
 
+    <!--SubMenu_START-->
+  <div class="container-fluid" style="margin-top:2%;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+       <ul class="navbar-nav d-flex flex-row">
+           <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block"><i class="fas fa-cannabis"></i></span><p class="font-weight-bold" style="display:inline-block;">Cannabinoids</p></a>
+           </li>
+           <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block;"> <i class="fas fa-bong"></i></span><p class="font-weight-bold" style="display:inline-block;">Paraphenelia</p></a>
+           </li>
+           <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block;"><i class="fas fa-spa"></i> </span><p class="font-weight-bold" style="display:inline-block;">Psyloscibin</p></a>
+           </li>
+           <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block;"> <i class="fas fa-fire"></i></span><p class="font-weight-bold" style="display:inline-block;">Erotica</p></a>
+           </li>
+            <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block;"> </span><p class="font-weight-bold" style="display:inline-block;"></p></a>
+           </li>
+            <li class="nav-item mr-3 mr-lg-0">
+               <a class="nav-link" href="#"><span style="display:inline-block;"> </span><p class="font-weight-bold" style="display:inline-block;"></p></a>
+           </li>
+       </ul>
+    </div>
+  </nav>
+</div>
+    <!--SubMenu_END-->
+
+
     <!--SideMenu_START-->
     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
