@@ -26,7 +26,7 @@
 <body>
     <!--TopMenu_START-->
 <!-- Image and text -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="TopNavBar">
   <div class="container-fluid">
     <ul class="navbar-nav d-flex flex-row">
       <!-- Icons -->
@@ -227,11 +227,14 @@
         <script>
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("TopNavBar").style.zIndex = 0;
             }
 
             /* Set the width of the side navigation to 0 */
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("TopNavBar").style.zIndex = 1;
+
             } 
 
         </script>
