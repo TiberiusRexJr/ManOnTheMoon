@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ManOnTheMoon.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ManOnTheMoon.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -26,6 +26,8 @@
 <body>
     <!--TopMenu_START-->
 <!-- Image and text -->
+<di class="container-fluid mb-5">
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="TopNavBar">
   <div class="container-fluid">
     <ul class="navbar-nav d-flex flex-row">
@@ -206,6 +208,8 @@
 </div>
     <!--SubMenu_END-->
 
+</di
+    v>
 
     <!--SideMenu_START-->
     <div id="mySidenav" class="sidenav">
@@ -237,18 +241,24 @@
         </asp:ScriptManager>
         <!-- As a link -->
         
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
+            
+        </div>
+        <div class="container-fluid mt-6">
+            <asp:ContentPlaceHolder ID="Footer" runat="server">
+           
+            </asp:ContentPlaceHolder>
         </div>
       
     
-            <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+           
+
+    </form>
+
+   
+     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
             <script type="text/javascript" src="Scripts/popper.min.js"></script>
             <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
             <script type="text/javascript" src="Scripts/mdb.min.js"></script>
@@ -265,7 +275,7 @@
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("TopNavBar").style.zIndex = 1;
 
-            } 
+            }
 
         </script>
         <!--SideMenuOpen_END-->
@@ -298,7 +308,5 @@
               });
           </script>
         <!--DropDown On However_END-->
-
-    </form>
 </body>
 </html>
