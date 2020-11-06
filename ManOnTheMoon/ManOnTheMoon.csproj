@@ -108,6 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="App_Data\ManOnTheMoonDB.mdf" />
+    <Content Include="App_Data\ManOnTheMoonDB_log.ldf">
+      <DependentUpon>ManOnTheMoonDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -310,7 +314,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Mobile\" />
   </ItemGroup>
   <ItemGroup>
