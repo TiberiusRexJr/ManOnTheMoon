@@ -29,7 +29,7 @@
 </div>
         </div>
     </div>
-        <div class="flex" style="margin-top:5%; background-color:green;" id="DivSearch">
+        <div class="flex" style="margin-top:5%; " id="DivSearch">
             
          <div style="margin-top:1%; width:20%; margin-left:0%; display:inline-block;">
             <div class="d-flex" style="">
@@ -39,7 +39,7 @@
                 aria-label="Search">
               </div>  
          </div>
-            <div class="float-right ml-5" style="margin-top:1%; margin-right:10%; flex:1; width:50%; display:inline-block; background-color:orange;">
+            <div class="float-right ml-5" style="margin-top:1%; margin-right:10%; flex:1; width:50%; display:inline-block; ">
                <div class="d-inline-flex flex-row">
                 <p class="text-xl text-justify">
                   Top shelf selections on medicinal marijuana flower’s of all types including moonrock’s, indica’s, sativa’s and hybrid’s. Herb Approach offers the largest selection of cannabis strains allowing you to buy weed online easy!
@@ -48,7 +48,7 @@
          </div>
         </div>
         <div class="container-fluid my-2" id="DivMainContent">
-            <div class="container float-left" id="DivMainContentLeft" style="display:inline-block; background-color:aliceblue; width:20%;">
+            <div class="container float-left" id="DivMainContentLeft" style="display:inline-block;  width:20%;">
                 <!--Shop Page Start-->
 
                <h5 class="h5-responsive">Shop Page</h5>
@@ -136,7 +136,7 @@
                 <!--Categories End-->
             </div>
             <!--MainContentDivRight_Start-->
-            <div class="container float-right" style="background-color:mediumspringgreen; width:80%; display:inline-block;" id="DivMainContentRight">
+            <div class="container float-right" style="width:80%; display:inline-block;" id="DivMainContentRight">
                <div class="row">
                    <div class="col-lg mx-1 my-1">
                                              <!--Card Narrower-->
