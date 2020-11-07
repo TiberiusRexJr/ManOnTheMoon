@@ -22,6 +22,8 @@
     <%Scripts.Render("~/bundles/modernizr");%>
 </head>
 <body>
+   <div class="d-flex">
+
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -29,6 +31,8 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+   </div>
+    
     <div class="container-fluid mt-6">
             <asp:ContentPlaceHolder ID="Footer" runat="server">
            
