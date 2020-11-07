@@ -22,7 +22,7 @@
     <%Scripts.Render("~/bundles/modernizr");%>
 </head>
 <body>
-   <div class="d-flex">
+   <div class="container-fluid mx-auto" style="margin-top:0%; background-color:seagreen;">
 
     <form id="form1" runat="server">
         <div>
@@ -33,9 +33,9 @@
     </form>
    </div>
     
-    <div class="container-fluid mt-6">
+    <div class="container-fluid mt-6" style="background-color:orange;">
             <asp:ContentPlaceHolder ID="Footer" runat="server">
-           
+           a
             </asp:ContentPlaceHolder>
         </div>
     <asp:PlaceHolder runat="server">
