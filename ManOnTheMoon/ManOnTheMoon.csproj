@@ -124,6 +124,7 @@
     <Content Include="Content\mdb.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\SBstyles.css" />
     <Content Include="Default.aspx" />
     <Content Include="Cannabis.aspx" />
     <Content Include="favicon.ico" />
