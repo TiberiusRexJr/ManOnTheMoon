@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Add_Product.aspx.cs" Inherits="ManOnTheMoon.Admin.Add_Product" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <link rel="stylesheet" href="../Content/Drag&Drop.css" />
+    
     <div class="container" style="background-color: orange;">
 
         <h2>Add Product</h2>
@@ -40,12 +41,100 @@
             </div>
         <div class="col-lg-6 col-md-6 bg-info">
                <h4>Images</h4>
-
-             
-            <div class="file-upload-wrapper">
-  <input type="file" id="input-file-now-custom-1" class="file-upload" data-default-file="https://mdbootstrap.com/img/Photos/Others/images/89.jpg" />
-</div>
+            <!--Image_Upload_1-->
+            <form>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                        <label class="control-label">Upload File</label>
+                        <div class="preview-zone hidden">
+                          <div class="box box-solid">
+                            <div class="box-header with-border">
+                              <div><b>Image </b></div>
+                              <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                 <i class="fas fa-sync-alt"></i> Reset 
+                                </button>
+                              </div>
+                            </div>
+                            <div class="box-body"></div>
+                          </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                          <div class="dropzone-desc">
+                            <i class="fas fa-sync-alt"></i>
+                            <p>Choose an image file or drag it here.</p>
+                          </div>
+                          <input type="file" name="img_logo" class="dropzone">
+                        </div>
+                      </div>
+                </div>
+             </div>
+            </form>
+            <!--Image_Upload_1--End-->
+          <!--Image_Upload_2-->
+            <form>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                        <div class="preview-zone hidden">
+                          <div class="box box-solid">
+                            <div class="box-header with-border">
+                              <div><b>Alternative Image 1</b></div>
+                              <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                 <i class="fas fa-sync-alt"></i> Reset 
+                                </button>
+                              </div>
+                            </div>
+                            <div class="box-body"></div>
+                          </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                          <div class="dropzone-desc">
+                            <i class="fas fa-sync-alt"></i>
+                            <p>Choose an image file or drag it here.</p>
+                          </div>
+                          <input type="file" name="img_logo" class="dropzone">
+                        </div>
+                      </div>
+                </div>
+             </div>
+            </form>
+            <!--Image_Upload_2--End-->
+             <!--Image_Upload_3-->
+            <form>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                       
+                        <div class="preview-zone hidden">
+                          <div class="box box-solid">
+                            <div class="box-header with-border">
+                              <div><b>Alternative Image 2</b></div>
+                              <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                 <i class="fas fa-sync-alt"></i> Reset 
+                                </button>
+                              </div>
+                            </div>
+                            <div class="box-body"></div>
+                          </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                          <div class="dropzone-desc">
+                            <i class="fas fa-sync-alt"></i>
+                            <p>Choose an image file or drag it here.</p>
+                          </div>
+                          <input type="file" name="img_logo" class="dropzone">
+                        </div>
+                      </div>
+                </div>
+             </div>
+            </form>
+            <!--Image_Upload_3--End-->
         </div>
+
     
     </div>
           <div class="row justify-content-center" style="background-color:purple;">

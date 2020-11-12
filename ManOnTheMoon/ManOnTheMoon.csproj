@@ -121,6 +121,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Drag&amp;Drop.css" />
     <Content Include="Content\dropdownHover.css" />
     <Content Include="Content\FormsStuff.css" />
     <Content Include="Content\mdb.min.css" />
@@ -131,6 +132,7 @@
     <Content Include="Cannabis.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Admin\Drag&amp;Drop.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
