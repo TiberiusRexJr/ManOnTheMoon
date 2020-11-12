@@ -1,0 +1,21 @@
+﻿input, span.fa {
+    height: 46px;
+    border: 1px solid #ccc;
+    padding: 1px 13px;
+}
+
+input {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+span.fa {
+    background-color: darkred;
+    display: inline-block;
+    float: left;
+    line-height: 50px;
+    border-right: 0;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    color: #555;
+}

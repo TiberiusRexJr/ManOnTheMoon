@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Admin\Add_Product.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="App_Data\ManOnTheMoonDB.mdf" />
     <Content Include="App_Data\ManOnTheMoonDB_log.ldf">
@@ -121,6 +122,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dropdownHover.css" />
+    <Content Include="Content\FormsStuff.css" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
@@ -261,6 +263,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Add_Product.aspx.cs">
+      <DependentUpon>Add_Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Add_Product.aspx.designer.cs">
+      <DependentUpon>Add_Product.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
