@@ -29,6 +29,16 @@ namespace ManOnTheMoon.Database
         }
         #endregion
         #region Methods
+            public void Errorhead(Exception e)
+            {
+            Console.WriteLine("----------Error----------: ");
+            Console.WriteLine("Error Message: " + e.Message);
+            Console.WriteLine("ErrorType: " + e.GetType().ToString());
+            Console.WriteLine("Exception Instance: " + e.InnerException.ToString());
+            Console.WriteLine("Error Method: " + e.TargetSite);//Gets Erroneius Method
+            Console.WriteLine("Error Object/Application: " + e.Source.ToString());
+            Console.WriteLine("Error StackTrace: " + e.StackTrace);
+        }   
         #region CRUD
         //Create
         #region Create
@@ -116,13 +126,67 @@ namespace ManOnTheMoon.Database
             }
             return status;
             }
-        
+
         #endregion
 
         //ReTrieve
         #region Retrieve
-
+        #region All
+        public List<Product> GetAllProducts()
+            {
+            List<Product> Products = new List<Product>();
+            try
+            {
+                Products = db.Products.ToList();
+            }
+            catch (Exception e)
+            {
+                this.Errorhead(e);
+            }
+            return Products;
+            }
+        public List<Brand> GetAllBrands()
+        {
+            List<Brand> Brands = new List<Brand>();
+            try
+            {
+                Brands = db.Brands.ToList();
+            }
+            catch (Exception e)
+            {
+                this.Errorhead(e);
+            }
+            return Brands;
+        }
+        public List<Category> GetAllCategories()
+        {
+            List<Category> categories= new List<Category>();
+            try
+            {
+                categories = db.Categories.ToList();
+            }
+            catch (Exception e)
+            {
+                this.Errorhead(e);
+            }
+            return categories;
+        }
         #endregion
+        #region ByPricePoint 
+            public List<Product> RetrieveByPriceOrder(string priceOrder)
+            {
+                var LowToHigh=from p in db.Products where p.Sale_Price.
+                switch(priceOrder)
+                {
+                case "Low to High":
+                    break;
+                case "High To Low":
+                    break;
+                }   
+            }
+        #endregion
+
+
         //Update
         #region Update
 
@@ -130,6 +194,7 @@ namespace ManOnTheMoon.Database
         //Delete
         #region Delete
 
+        #endregion
         #endregion
         #endregion
         #endregion
