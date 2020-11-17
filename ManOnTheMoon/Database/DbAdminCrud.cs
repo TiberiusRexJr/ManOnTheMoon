@@ -172,21 +172,90 @@ namespace ManOnTheMoon.Database
             return categories;
         }
         #endregion
+
+
         #region ByPricePoint 
-            public List<Product> RetrieveByPriceOrder(string priceOrder)
+            public List<Product> RetrieveProductsByPriceOrder(int mode)
             {
-                var LowToHigh=from p in db.Products where p.Sale_Price.
-                switch(priceOrder)
+            List<Product> products = new List<Product>();
+
+            try
+            {
+
+                switch(mode)
                 {
-                case "Low to High":
+            
+                case 1:products = db.Products.OrderBy(p => p.Retail_Price).ToList();
                     break;
-                case "High To Low":
+                case 2:products = db.Products.OrderByDescending(p => p.Retail_Price).ToList();
                     break;
-                }   
+                }
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+                return products;
+            }
+
+            public List<Product> RetrieveProductsByPriceRange(int mode)
+            {
+            List<Product> products = new List<Product>();
+            try
+            {
+                switch (mode)
+                {
+                    case 1:
+                        products = db.Products.Where(p => p.Retail_Price > 0 && p.Retail_Price <= 30).OrderBy(p => p.Retail_Price).ToList();
+                        break;
+                    case 2:
+                        products = db.Products.Where(p => p.Retail_Price > 30 && p.Retail_Price <= 80).OrderBy(p => p.Retail_Price).ToList();
+                        ;
+                        break;
+                    case 3:
+                        products = db.Products.Where(p => p.Retail_Price > 130 && p.Retail_Price <= 180).OrderBy(p => p.Retail_Price).ToList();
+
+                        ;
+                        break;
+                    case 4:
+                        products = db.Products.Where(p => p.Retail_Price > 180 && p.Retail_Price <= 230).OrderBy(p => p.Retail_Price).ToList();
+
+                        ;
+                        break;
+                    case 5:
+                        products = db.Products.Where(p => p.Retail_Price > 230).OrderBy(p => p.Retail_Price).ToList();
+
+                        ;
+                        break;
+                }
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+                return products;
             }
         #endregion
 
+        #region ByCategory
 
+            public List<Product> RetrieveProductByCategory(string Category)
+            {
+                List<Product> productsByCategory = new List<Product>() ;
+            try
+            {
+                productsByCategory=db.Products.Where(p=>p.Category==Category).OrderBy(p=>p.Name).ToList();
+
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+            return productsByCategory;
+                 
+
+            }
+        #endregion
         //Update
         #region Update
 
