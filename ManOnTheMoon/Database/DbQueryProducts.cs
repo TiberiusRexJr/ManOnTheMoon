@@ -8,13 +8,13 @@ using ManOnTheMoon.Models;
 
 namespace ManOnTheMoon.Database
 {
-    public class DbAdminCrud
+    public class DbQueryProducts
     {
         string DatabaseURL = "../App_Data/ManOnTheMoonDB.mdf";
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
 
         #region Constructor
-            public DbAdminCrud()
+            public DbQueryProducts()
         {
             try
             {
@@ -39,96 +39,7 @@ namespace ManOnTheMoon.Database
             Console.WriteLine("Error Object/Application: " + e.Source.ToString());
             Console.WriteLine("Error StackTrace: " + e.StackTrace);
         }   
-        #region CRUD
-        //Create
-        #region Create
-            public bool CreateProduct(Product product)
-            {
-                bool status = false;
-                if(product==null)
-                {
-                    return status;
-                }
-                try
-                {
-                db.Products.InsertOnSubmit(product);
-                    db.SubmitChanges();
-                    status = true;
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine("----------Error----------: ");
-                    Console.WriteLine("Error Message: "+e.Message);
-                    Console.WriteLine("ErrorType: "+e.GetType().ToString());
-                    Console.WriteLine("Exception Instance: "+e.InnerException.ToString());
-                    Console.WriteLine("Error Method: " + e.TargetSite);//Gets Erroneius Method
-                    Console.WriteLine("Error Object/Application: " + e.Source.ToString());
-                    Console.WriteLine("Error StackTrace: " + e.StackTrace);
-
-
-                status = false;
-                }
-                return status;
-            }
-            public bool CreateCategory(Category category)
-            {
-                bool status = false;
-                if (category == null)
-                {
-                    return status;
-                }
-                try
-                {
-                    db.Categories.InsertOnSubmit(category);
-                    db.SubmitChanges();
-                    status = true;
-                }
-            catch (Exception e)
-            {
-                Console.WriteLine("----------Error----------: ");
-                Console.WriteLine("Error Message: " + e.Message);
-                Console.WriteLine("ErrorType: " + e.GetType().ToString());
-                Console.WriteLine("Exception Instance: " + e.InnerException.ToString());
-                Console.WriteLine("Error Method: " + e.TargetSite);//Gets Erroneius Method
-                Console.WriteLine("Error Object/Application: " + e.Source.ToString());
-                Console.WriteLine("Error StackTrace: " + e.StackTrace);
-
-
-                status = false;
-            }
-            return status;
-            }
-            public bool CreateBrand(Brand brand)
-            {
-                bool status = false;
-                if (brand == null)
-                {
-                    return status;
-                }
-                try
-                {
-                    db.Brands.InsertOnSubmit(brand);
-                    db.SubmitChanges();
-                    status = true;
-                }
-            catch (Exception e)
-            {
-                Console.WriteLine("----------Error----------: ");
-                Console.WriteLine("Error Message: " + e.Message);
-                Console.WriteLine("ErrorType: " + e.GetType().ToString());
-                Console.WriteLine("Exception Instance: " + e.InnerException.ToString());
-                Console.WriteLine("Error Method: " + e.TargetSite);//Gets Erroneius Method
-                Console.WriteLine("Error Object/Application: " + e.Source.ToString());
-                Console.WriteLine("Error StackTrace: " + e.StackTrace);
-
-
-                status = false;
-            }
-            return status;
-            }
-
-        #endregion
-
+        
         //ReTrieve
         #region Retrieve
         #region All
@@ -197,7 +108,6 @@ namespace ManOnTheMoon.Database
             }
                 return products;
             }
-
             public List<Product> RetrieveProductsByPriceRange(int mode)
             {
             List<Product> products = new List<Product>();
@@ -238,7 +148,6 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region ByCategory
-
             public List<Product> RetrieveProductByCategory(string Category)
             {
                 List<Product> productsByCategory = new List<Product>() ;
@@ -256,6 +165,7 @@ namespace ManOnTheMoon.Database
 
             }
         #endregion
+
         //Update
         #region Update
 
@@ -265,7 +175,7 @@ namespace ManOnTheMoon.Database
 
         #endregion
         #endregion
-        #endregion
+        
         #endregion
     }
 }

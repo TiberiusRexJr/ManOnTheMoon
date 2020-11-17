@@ -311,7 +311,8 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Database\DbAdminCrud.cs" />
+    <Compile Include="Database\DbAdmin.cs" />
+    <Compile Include="Database\DbQueryProducts.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

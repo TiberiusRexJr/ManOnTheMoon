@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using ManOnTheMoon.Database;
+using ManOnTheMoon.Models;
 namespace ManOnTheMoon.Database
 {
     public class DbAdmin
@@ -93,7 +94,44 @@ namespace ManOnTheMoon.Database
 
         #endregion
 
-        #region Retrieve
+        #region RetrieveBy
+        public Product productsById(int id)
+        {
+            Product product = new Product() ;
+            try
+            {
+                product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+            return product;
+        }
+        #endregion
+
+        #region Delete
+            public bool DeleteById(Product p)
+            {
+                bool status = false;
+
+                if(p==null)
+                {
+                    status = false;
+                    return status;
+                }   
+                try
+                {
+                db.Products.DeleteOnSubmit(p);
+                db.SubmitChanges();
+                status = true;
+                }
+                catch(Exception e)
+                {
+                Errorhead(e);
+                }
+            return status;
+            }
         #endregion
 
 
