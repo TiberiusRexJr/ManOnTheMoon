@@ -9,31 +9,18 @@ namespace ManOnTheMoon.Api
 {
     public class Admin : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public  MyApiResult GetHelloWorld()
         {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+            
 
-        // POST api/<controller>
-        public void Post([FromBody] string value)
-        {
+         return new MyApiResult { Data = "JohnnyBlade", Date = DateTime.Now };
         }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        public class MyApiResult
         {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            public string Data { get; set; }
+            public DateTime Date { get; set; }
         }
     }
 }
