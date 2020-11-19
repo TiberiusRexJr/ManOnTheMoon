@@ -10,24 +10,16 @@ namespace ManOnTheMoon.Database
 {
     public class DbQueryProducts
     {
-        string DatabaseURL = "../App_Data/ManOnTheMoonDB.mdf";
+
+        #region Variables
+
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
+        #endregion
 
         #region Constructor
-            public DbQueryProducts()
-        {
-            try
-            {
-
-            DataContext db = new DataContext(DatabaseURL);
-            }
-            catch(Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-            }
-
-        }
+         
         #endregion
+
         #region Methods
             public void Errorhead(Exception e)
             {
@@ -38,13 +30,16 @@ namespace ManOnTheMoon.Database
             Console.WriteLine("Error Method: " + e.TargetSite);//Gets Erroneius Method
             Console.WriteLine("Error Object/Application: " + e.Source.ToString());
             Console.WriteLine("Error StackTrace: " + e.StackTrace);
-        }   
-        
+        }
+
         //ReTrieve
-        #region Retrieve
-        #region All
+
+        #endregion
+
+        //Retrieve (All)
+        #region RetrieveAll
         public List<Product> GetAllProducts()
-            {
+        {
             List<Product> Products = new List<Product>();
             try
             {
@@ -55,7 +50,7 @@ namespace ManOnTheMoon.Database
                 this.Errorhead(e);
             }
             return Products;
-            }
+        }
         public List<Brand> GetAllBrands()
         {
             List<Brand> Brands = new List<Brand>();
@@ -71,7 +66,7 @@ namespace ManOnTheMoon.Database
         }
         public List<Category> GetAllCategories()
         {
-            List<Category> categories= new List<Category>();
+            List<Category> categories = new List<Category>();
             try
             {
                 categories = db.Categories.ToList();
@@ -84,32 +79,34 @@ namespace ManOnTheMoon.Database
         }
         #endregion
 
-
+        //Retrieve (By prince point)
         #region ByPricePoint 
-            public List<Product> RetrieveProductsByPriceOrder(int mode)
-            {
+        public List<Product> RetrieveProductsByPriceOrder(int mode)
+        {
             List<Product> products = new List<Product>();
 
             try
             {
 
-                switch(mode)
+                switch (mode)
                 {
-            
-                case 1:products = db.Products.OrderBy(p => p.Retail_Price).ToList();
-                    break;
-                case 2:products = db.Products.OrderByDescending(p => p.Retail_Price).ToList();
-                    break;
+
+                    case 1:
+                        products = db.Products.OrderBy(p => p.Retail_Price).ToList();
+                        break;
+                    case 2:
+                        products = db.Products.OrderByDescending(p => p.Retail_Price).ToList();
+                        break;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
-                return products;
-            }
-            public List<Product> RetrieveProductsByPriceRange(int mode)
-            {
+            return products;
+        }
+        public List<Product> RetrieveProductsByPriceRange(int mode)
+        {
             List<Product> products = new List<Product>();
             try
             {
@@ -139,43 +136,36 @@ namespace ManOnTheMoon.Database
                         break;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
-                return products;
-            }
+            return products;
+        }
         #endregion
 
+        //Retrieve (ByCategory)
         #region ByCategory
-            public List<Product> RetrieveProductByCategory(string Category)
-            {
-                List<Product> productsByCategory = new List<Product>() ;
+        public List<Product> RetrieveProductByCategory(string Category)
+        {
+            List<Product> productsByCategory = new List<Product>();
             try
             {
-                productsByCategory=db.Products.Where(p=>p.Category==Category).OrderBy(p=>p.Name).ToList();
+                productsByCategory = db.Products.Where(p => p.Category == Category).OrderBy(p => p.Name).ToList();
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
             return productsByCategory;
-                 
 
-            }
+
+        }
         #endregion
 
-        //Update
-        #region Update
 
-        #endregion
-        //Delete
-        #region Delete
+       
 
-        #endregion
-        #endregion
-        
-        #endregion
     }
 }
