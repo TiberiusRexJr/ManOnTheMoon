@@ -43,6 +43,7 @@ namespace ManOnTheMoon.Database
             List<Product> Products = new List<Product>();
             try
             {
+                var product=
                 Products = db.Products.ToList();
             }
             catch (Exception e)
