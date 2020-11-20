@@ -43,8 +43,31 @@ namespace ManOnTheMoon.Database
             List<Product> Products = new List<Product>();
             try
             {
-                var product=
-                Products = db.Products.ToList();
+                //get all ROWS from PRODUCTS and all ROWS from IMAGES JOIN ON Product_ID
+                Products = (from p in db.Products join i in db.Product_Images on p.Id equals i.Product_Id select new Product
+                {
+                    Id=p.Id,
+                    Name=p.Name,
+                    Description=p.Description,
+                    Upc=p.Upc,
+                    Brand=p.Brand,
+                    Length=p.Length,
+                    Width=p.Width,
+                    Weight=p.Weight,
+                    Height=p.Height,
+                    Cost=p.Cost,
+                    Retail_Price=p.Retail_Price,
+                    Sale_Price=p.Sale_Price,
+                    Stock_Quantity=p.Stock_Quantity,
+                    Category=p.Category,
+                    Sub_Category=p.Sub_Category,
+                    On_Sale_Status=p.On_Sale_Status,
+
+                    ProductImagesTableRecordId= (int)i.Product_Id,
+                    ProductImageUrl_1 = i.Product_Image_1
+                    ,ProductImageUrl_2=i.Product_Image_2, 
+                    ProductImageUrl_3=i.Product_Image_3
+                }) .ToList();
             }
             catch (Exception e)
             {
@@ -147,12 +170,12 @@ namespace ManOnTheMoon.Database
 
         //Retrieve (ByCategory)
         #region ByCategory
-        public List<Product> RetrieveProductByCategory(string Category)
+        public List<Product> RetrieveProductByCategory(string category)
         {
             List<Product> productsByCategory = new List<Product>();
             try
             {
-                productsByCategory = db.Products.Where(p => p.Category == Category).OrderBy(p => p.Name).ToList();
+                productsByCategory = db.Products.Where(p => p.Category == category).OrderBy(p => p.Name).ToList();
 
             }
             catch (Exception e)
