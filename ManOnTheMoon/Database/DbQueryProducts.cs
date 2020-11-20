@@ -111,15 +111,16 @@ namespace ManOnTheMoon.Database
 
             try
             {
-
+                var queryResult = GetAllProducts();
                 switch (mode)
                 {
 
                     case 1:
-                        products = db.Products.OrderBy(p => p.Retail_Price).ToList();
+                        
+                        products = queryResult.OrderBy(p => p.Retail_Price).ToList();
                         break;
                     case 2:
-                        products = db.Products.OrderByDescending(p => p.Retail_Price).ToList();
+                        products = queryResult.OrderByDescending(p => p.Retail_Price).ToList();
                         break;
                 }
             }

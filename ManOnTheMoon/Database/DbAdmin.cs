@@ -6,7 +6,7 @@ using ManOnTheMoon.Database;
 using ManOnTheMoon.Models;
 namespace ManOnTheMoon.Database
 {
-    public class DbAdmin
+    public class DbAdmin: DbQueryProducts
     {
         #region Variables
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
@@ -215,7 +215,8 @@ namespace ManOnTheMoon.Database
             Product product = null;
             try
             {
-                product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+                var query = GetAllProducts();
+                product = query.Where(p => p.Id == id).FirstOrDefault();
             }
             catch(Exception e)
             {
