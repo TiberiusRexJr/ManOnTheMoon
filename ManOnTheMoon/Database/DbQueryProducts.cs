@@ -133,29 +133,31 @@ namespace ManOnTheMoon.Database
         public List<Product> RetrieveProductsByPriceRange(int mode)
         {
             List<Product> products = new List<Product>();
+            var query = GetAllProducts();
             try
             {
                 switch (mode)
                 {
                     case 1:
-                        products = db.Products.Where(p => p.Retail_Price > 0 && p.Retail_Price <= 30).OrderBy(p => p.Retail_Price).ToList();
+                        
+                        products = query.Where(p => p.Retail_Price > 0 && p.Retail_Price <= 30).OrderBy(p => p.Retail_Price).ToList();
                         break;
                     case 2:
-                        products = db.Products.Where(p => p.Retail_Price > 30 && p.Retail_Price <= 80).OrderBy(p => p.Retail_Price).ToList();
+                        products = query.Where(p => p.Retail_Price > 30 && p.Retail_Price <= 80).OrderBy(p => p.Retail_Price).ToList();
                         ;
                         break;
                     case 3:
-                        products = db.Products.Where(p => p.Retail_Price > 130 && p.Retail_Price <= 180).OrderBy(p => p.Retail_Price).ToList();
+                        products = query.Where(p => p.Retail_Price > 130 && p.Retail_Price <= 180).OrderBy(p => p.Retail_Price).ToList();
 
                         ;
                         break;
                     case 4:
-                        products = db.Products.Where(p => p.Retail_Price > 180 && p.Retail_Price <= 230).OrderBy(p => p.Retail_Price).ToList();
+                        products = query.Where(p => p.Retail_Price > 180 && p.Retail_Price <= 230).OrderBy(p => p.Retail_Price).ToList();
 
                         ;
                         break;
                     case 5:
-                        products = db.Products.Where(p => p.Retail_Price > 230).OrderBy(p => p.Retail_Price).ToList();
+                        products = query.Where(p => p.Retail_Price > 230).OrderBy(p => p.Retail_Price).ToList();
 
                         ;
                         break;
@@ -176,7 +178,8 @@ namespace ManOnTheMoon.Database
             List<Product> productsByCategory = new List<Product>();
             try
             {
-                productsByCategory = db.Products.Where(p => p.Category == category).OrderBy(p => p.Name).ToList();
+                var queryResult = GetAllProducts();
+                productsByCategory = queryResult.Where(p => p.Category == category).OrderBy(p => p.Name).ToList();
 
             }
             catch (Exception e)
