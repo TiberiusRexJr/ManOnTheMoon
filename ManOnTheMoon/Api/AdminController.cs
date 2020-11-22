@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ManOnTheMoon.Models;
 using System.Threading.Tasks;
 using System.Threading;
@@ -36,7 +37,15 @@ namespace ManOnTheMoon.Api
             #endregion
             public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                
+                var data =
+                  var response = new HttpResponseMessage()
+                  {
+                    Content = new StringContent(stringPayload, Encoding.UTF8, "application/json"),
+                    RequestMessage = _request
+                  };
+
+                return Task.FromResult(response);
             }
         }
         #endregion
