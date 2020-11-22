@@ -13,7 +13,7 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region Methods
-        public void Errorhead(Exception e)
+        public new void Errorhead(Exception e)
         {
             Console.WriteLine("----------Error----------: ");
             Console.WriteLine("Error Message: " + e.Message);
@@ -26,18 +26,19 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region Create
-        public Nullable<int>  CreateProduct(Product product)
+        public Product  CreateProduct(Product product)
         {
-            Nullable<int> id = null;
+            Product returnProduct = null;
             if (product == null)
             {
-                return id;
+                return returnProduct;
             }
             try
             {
                 db.Products.InsertOnSubmit(product);
                 db.SubmitChanges();
-                id = product.Id;
+                returnProduct = product;
+                
             }
             catch (Exception e)
             {
@@ -45,69 +46,65 @@ namespace ManOnTheMoon.Database
 
 
             }
-            return id;
+            return returnProduct;
         }
-        public bool CreateCategory(Category category)
+        public Category CreateCategory(Category category)
         {
-            bool status = false;
+            Category responseCategory = null;
             if (category == null)
             {
-                return status;
+                return responseCategory;
             }
             try
             {
                 db.Categories.InsertOnSubmit(category);
                 db.SubmitChanges();
-                status = true;
+                responseCategory = category;
             }
             catch (Exception e)
             {
                 Errorhead(e);
-
-                status = false;
             }
-            return status;
+            return responseCategory;
         }
-        public bool CreateBrand(Brand brand)
+        public Brand CreateBrand(Brand brand)
         {
-            bool status = false;
+            Brand responseBrand = null;
             if (brand == null)
             {
-                return status;
+                return responseBrand;
             }
             try
             {
                 db.Brands.InsertOnSubmit(brand);
                 db.SubmitChanges();
-                status = true;
+                responseBrand = brand;
             }
             catch (Exception e)
             {
                 Errorhead(e);
 
-
-                status = false;
             }
-            return status;
+            return responseBrand;
         }
-        public bool CreateProductImageRecord(Product_Image product_Images)
+        public Product_Image CreateProductImageRecord(Product_Image product_Images)
         {
-            bool status = false;
+            Product_Image product_Image2Response = null;
             if(product_Images==null)
             {
-                return status;
+                return product_Image2Response;
             }
             try
             {
                 db.Product_Images.InsertOnSubmit(product_Images);
                 db.SubmitChanges();
-                status = true;
+                product_Image2Response = product_Images;
             }
             catch(Exception e)
             {
                 Errorhead(e);
             }
-            return status;
+            return product_Image2Response;
         }
 
         #endregion
