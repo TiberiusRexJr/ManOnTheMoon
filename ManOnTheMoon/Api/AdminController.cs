@@ -62,6 +62,7 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Post
+        [HttpPost]
         public Response<Product> PostProduct([FromBody] Product product)
         {
             Response<Product> responseMessage = new Response<Product>();
@@ -88,6 +89,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpPost]
         public Response<Category> PostCategory([FromBody] Category category)
         {
             Response<Category> responseMessage = new Response<Category>();
@@ -115,6 +117,7 @@ namespace ManOnTheMoon.Api
             return responseMessage;
 
         }
+        [HttpPost]
         public Response<Brand> PostBrand([FromBody] Brand brand)
         {
             Response<Brand> responseMessage = new Response<Brand>();
@@ -141,6 +144,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpPost]
         public Response<Product_Image> PostProductImages([FromBody] Product_Image product_Images)
         {
 
@@ -173,6 +177,7 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Put
+        [HttpPut]
         public Response<Product> PutProduct(Product product)
         {
             Response<Product> responseMessage = new Response<Product>();
@@ -200,6 +205,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpPut]
         public Response<Category> PutCategory(Category category)
         {
             Response<Category> responseMessage = new Response<Category>();
@@ -227,6 +233,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpPut]
         public Response<Brand> PutBrand(Brand brand)
         {
             Response<Brand> responseMessage = new Response<Brand>();
@@ -254,6 +261,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpPut]
         public Response<Product_Image> PutProductImages(Product_Image images)
         {
             Response<Product_Image> responseMessage = new Response<Product_Image>();
@@ -287,6 +295,8 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Get
+        [HttpGet]
+        [Route("api/Admin/GetProductById/{productId}")]
         public Response<Product> GetProductById(int productId)
         {
             Response<Product> responseMessage = new Response<Product>();
@@ -297,7 +307,7 @@ namespace ManOnTheMoon.Api
                 if (DbResponse == null)
                 {
                     responseMessage.returnData = DbResponse;
-                    responseMessage.status = HttpStatusCode.NotFound;
+                    responseMessage.status = HttpStatusCode.Conflict;
                     responseMessage.ReasonPhrase = "Requested item was Not Found";
                 }
                 else
@@ -314,9 +324,16 @@ namespace ManOnTheMoon.Api
             return responseMessage;
 
         }
+        [HttpGet]
+        [Route("api/Admin/Test/{anystring}")]
+        public int Test(int anystring)
+        {
+            return anystring;
+        }
         #endregion
 
         #region Delete
+        [HttpDelete]
         public Response<bool> DeleteProduct(Product product)
         {
 
@@ -344,6 +361,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpDelete]
         public Response<bool> DeleteBrand(Brand brand)
         {
             Response<bool> responseMessage = new Response<bool>();
@@ -370,6 +388,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpDelete]
         public Response<bool> DeleteCategory(Category category)
         {
             Response<bool> responseMessage = new Response<bool>();
@@ -397,6 +416,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+        [HttpDelete]
         public Response<bool> DeleteProductImages(Product_Image product_Image)
         {
 

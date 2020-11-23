@@ -210,9 +210,12 @@ namespace ManOnTheMoon.Database
         public Product GetproductById(int id)
         {
             Product product = null;
+
+            if (String.IsNullOrEmpty(id.ToString()))
+            { return product; }
             try
             {
-                var query = GetAllProducts();
+                var query = db.Products.ToList();
                 product = query.Where(p => p.Id == id).FirstOrDefault();
             }
             catch(Exception e)
