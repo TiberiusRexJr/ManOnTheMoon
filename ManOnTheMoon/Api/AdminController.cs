@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ManOnTheMoon.Database;
+using ManOnTheMoon.Models;
+using System;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using ManOnTheMoon.Models;
-using ManOnTheMoon.Database;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace ManOnTheMoon.Api
 {
@@ -42,26 +39,21 @@ namespace ManOnTheMoon.Api
             public string ReasonPhrase { get; set; }
             #endregion
 
-            #region Constructor
-            public PostResponse()
-            { 
 
-            }
-            #endregion
 
             #region IImplementation
             public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
             {
 
                 var data = JsonSerializer.Serialize(returnData);
-                  var response = new HttpResponseMessage()
-                  {
-                    Content = new StringContent(data,Encoding.UTF8, "application/json"),
+                var response = new HttpResponseMessage()
+                {
+                    Content = new StringContent(data, Encoding.UTF8, "application/json"),
                     StatusCode = status,
-                    ReasonPhrase=ReasonPhrase
+                    ReasonPhrase = ReasonPhrase
 
-                    
-                  };
+
+                };
 
                 return Task.FromResult(response);
             }
@@ -75,7 +67,7 @@ namespace ManOnTheMoon.Api
             Response<Product> responseMessage = new Response<Product>();
             try
             {
-                 var DbResponse=db.CreateProduct(product);
+                var DbResponse = db.CreateProduct(product);
 
                 if (DbResponse == null)
                 {
@@ -90,7 +82,7 @@ namespace ManOnTheMoon.Api
                     responseMessage.status = HttpStatusCode.Created;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
@@ -98,30 +90,30 @@ namespace ManOnTheMoon.Api
         }
         public Response<Category> PostCategory([FromBody] Category category)
         {
-                Response<Category> responseMessage = new Response<Category>();
-                try
-                {
-                    var DbResponse = db.CreateCategory(category);
+            Response<Category> responseMessage = new Response<Category>();
+            try
+            {
+                var DbResponse = db.CreateCategory(category);
 
-                    if (DbResponse == null)
-                    {
-                        responseMessage.returnData = null;
-                        responseMessage.ReasonPhrase = "Database Responsed With Null";
-                        responseMessage.status = HttpStatusCode.Conflict;
-                    }
-                    else
-                    {
-                        responseMessage.returnData = DbResponse;
-                        responseMessage.ReasonPhrase = "SuccessFully Inserted";
-                        responseMessage.status = HttpStatusCode.Created;
-                    }
-                }
-                catch (Exception e)
+                if (DbResponse == null)
                 {
-                    Errorhead(e);
+                    responseMessage.returnData = null;
+                    responseMessage.ReasonPhrase = "Database Responsed With Null";
+                    responseMessage.status = HttpStatusCode.Conflict;
                 }
-                return responseMessage;
-          
+                else
+                {
+                    responseMessage.returnData = DbResponse;
+                    responseMessage.ReasonPhrase = "SuccessFully Inserted";
+                    responseMessage.status = HttpStatusCode.Created;
+                }
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+
         }
         public Response<Brand> PostBrand([FromBody] Brand brand)
         {
@@ -181,34 +173,35 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Put
-        public Response<Product> PutProduct(Product product) 
+        public Response<Product> PutProduct(Product product)
         {
             Response<Product> responseMessage = new Response<Product>();
             var dbResponse = db.UpdateProduct(product);
             try
             {
 
-            if(dbResponse==false)
-            {
-                responseMessage.returnData = null;
-                responseMessage.status = HttpStatusCode.Conflict;
-                responseMessage.ReasonPhrase = "Update Failed";
-            }
-            else if(dbResponse==true)
-            {
-                responseMessage.returnData = null;
-                responseMessage.status = HttpStatusCode.NoContent;
-                responseMessage.ReasonPhrase = "Update Succeded";
-            }
+                if (dbResponse == false)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Update Failed";
+                }
+                else if (dbResponse == true)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.NoContent;
+                    responseMessage.ReasonPhrase = "Update Succeded";
+                }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
             return responseMessage;
         }
-        public Response<Category> PutCategory(Category category) {
+        public Response<Category> PutCategory(Category category)
+        {
             Response<Category> responseMessage = new Response<Category>();
             var dbResponse = db.UpdateCategory(category);
             try
@@ -234,7 +227,8 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
-        public Response<Brand> PutBrand(Brand brand) {
+        public Response<Brand> PutBrand(Brand brand)
+        {
             Response<Brand> responseMessage = new Response<Brand>();
             var dbResponse = db.UpdateBrand(brand);
             try
@@ -260,7 +254,8 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
-        public Response<Product_Image> PutProductImages(Product_Image images) {
+        public Response<Product_Image> PutProductImages(Product_Image images)
+        {
             Response<Product_Image> responseMessage = new Response<Product_Image>();
             var dbResponse = db.UpdateProductImages(images);
             try
@@ -292,14 +287,14 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Get
-            public Response<Product> GetProductById(int productId)
+        public Response<Product> GetProductById(int productId)
         {
             Response<Product> responseMessage = new Response<Product>();
             try
             {
                 var DbResponse = db.GetproductById(productId);
 
-                if(DbResponse == null)
+                if (DbResponse == null)
                 {
                     responseMessage.returnData = DbResponse;
                     responseMessage.status = HttpStatusCode.NotFound;
@@ -312,7 +307,7 @@ namespace ManOnTheMoon.Api
                     responseMessage.ReasonPhrase = "Requested item Found";
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
@@ -322,33 +317,35 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Delete
-        public Response<bool> DeleteProduct(Product product) {
+        public Response<bool> DeleteProduct(Product product)
+        {
 
             Response<bool> responseMessage = new Response<bool>();
 
             try
             {
-                var databaseResponse=db.DeleteProduct(product);
-                if(databaseResponse==false)
+                var databaseResponse = db.DeleteProduct(product);
+                if (databaseResponse == false)
                 {
                     responseMessage.returnData = false;
                     responseMessage.status = HttpStatusCode.Conflict;
                     responseMessage.ReasonPhrase = "Failed To Delte";
                 }
-                else if(databaseResponse==true)
+                else if (databaseResponse == true)
                 {
                     responseMessage.returnData = true;
                     responseMessage.status = HttpStatusCode.OK;
                     responseMessage.ReasonPhrase = "Product Deleted";
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Errorhead(e);
             }
             return responseMessage;
         }
-        public Response<bool> DeleteBrand(Brand brand) {
+        public Response<bool> DeleteBrand(Brand brand)
+        {
             Response<bool> responseMessage = new Response<bool>();
             try
             {
@@ -373,7 +370,8 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
-        public Response<bool> DeleteCategory(Category category) {
+        public Response<bool> DeleteCategory(Category category)
+        {
             Response<bool> responseMessage = new Response<bool>();
 
             try
@@ -399,7 +397,8 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
-        public Response<bool> DeleteProductImages(Product_Image product_Image) {
+        public Response<bool> DeleteProductImages(Product_Image product_Image)
+        {
 
             Response<bool> responseMessage = new Response<bool>();
 
