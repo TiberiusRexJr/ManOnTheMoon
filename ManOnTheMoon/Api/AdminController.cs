@@ -179,26 +179,253 @@ namespace ManOnTheMoon.Api
             }
         }
         #endregion
-        
+
         #region Put
-        public void PutProduct() { }
-        public void PutCategory() { }
-        public void PutBrand() { }
-        public void PutProductImages() { }
+        public Response<Product> PutProduct(Product product) 
+        {
+            Response<Product> responseMessage = new Response<Product>();
+            var dbResponse = db.UpdateProduct(product);
+            try
+            {
+
+            if(dbResponse==false)
+            {
+                responseMessage.returnData = null;
+                responseMessage.status = HttpStatusCode.Conflict;
+                responseMessage.ReasonPhrase = "Update Failed";
+            }
+            else if(dbResponse==true)
+            {
+                responseMessage.returnData = null;
+                responseMessage.status = HttpStatusCode.NoContent;
+                responseMessage.ReasonPhrase = "Update Succeded";
+            }
+
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<Category> PutCategory(Category category) {
+            Response<Category> responseMessage = new Response<Category>();
+            var dbResponse = db.UpdateCategory(category);
+            try
+            {
+
+                if (dbResponse == false)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Update Failed";
+                }
+                else if (dbResponse == true)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.NoContent;
+                    responseMessage.ReasonPhrase = "Update Succeded";
+                }
+
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<Brand> PutBrand(Brand brand) {
+            Response<Brand> responseMessage = new Response<Brand>();
+            var dbResponse = db.UpdateBrand(brand);
+            try
+            {
+
+                if (dbResponse == false)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Update Failed";
+                }
+                else if (dbResponse == true)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.NoContent;
+                    responseMessage.ReasonPhrase = "Update Succeded";
+                }
+
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<Product_Image> PutProductImages(Product_Image images) {
+            Response<Product_Image> responseMessage = new Response<Product_Image>();
+            var dbResponse = db.UpdateProductImages(images);
+            try
+            {
+
+                if (dbResponse == false)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Update Failed";
+                }
+                else if (dbResponse == true)
+                {
+                    responseMessage.returnData = null;
+                    responseMessage.status = HttpStatusCode.NoContent;
+                    responseMessage.ReasonPhrase = "Update Succeded";
+                }
+
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
 
 
 
         #endregion
 
         #region Get
-            public void GetProductById(){ }
+            public Response<Product> GetProductById(int productId)
+        {
+            Response<Product> responseMessage = new Response<Product>();
+            try
+            {
+                var DbResponse = db.GetproductById(productId);
+
+                if(DbResponse == null)
+                {
+                    responseMessage.returnData = DbResponse;
+                    responseMessage.status = HttpStatusCode.NotFound;
+                    responseMessage.ReasonPhrase = "Requested item was Not Found";
+                }
+                else
+                {
+                    responseMessage.returnData = DbResponse;
+                    responseMessage.status = HttpStatusCode.OK;
+                    responseMessage.ReasonPhrase = "Requested item Found";
+                }
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+
+        }
         #endregion
 
         #region Delete
-        public void DeleteProduct() { }
-        public void DeleteBrand() { }
-        public void DeleteCategory() { }
-        public void DeleteProductImages() { }
+        public Response<bool> DeleteProduct(Product product) {
+
+            Response<bool> responseMessage = new Response<bool>();
+
+            try
+            {
+                var databaseResponse=db.DeleteProduct(product);
+                if(databaseResponse==false)
+                {
+                    responseMessage.returnData = false;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Failed To Delte";
+                }
+                else if(databaseResponse==true)
+                {
+                    responseMessage.returnData = true;
+                    responseMessage.status = HttpStatusCode.OK;
+                    responseMessage.ReasonPhrase = "Product Deleted";
+                }
+            }
+            catch(Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<bool> DeleteBrand(Brand brand) {
+            Response<bool> responseMessage = new Response<bool>();
+            try
+            {
+                var databaseResponse = db.DeleteBrand(brand);
+
+                if (databaseResponse == false)
+                {
+                    responseMessage.returnData = false;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Failed To Delte";
+                }
+                else if (databaseResponse == true)
+                {
+                    responseMessage.returnData = true;
+                    responseMessage.status = HttpStatusCode.OK;
+                    responseMessage.ReasonPhrase = "Product Deleted";
+                }
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<bool> DeleteCategory(Category category) {
+            Response<bool> responseMessage = new Response<bool>();
+
+            try
+            {
+                var databaseResponse = db.DeleteCategory(category);
+
+                if (databaseResponse == false)
+                {
+                    responseMessage.returnData = false;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Failed To Delte";
+                }
+                else if (databaseResponse == true)
+                {
+                    responseMessage.returnData = true;
+                    responseMessage.status = HttpStatusCode.OK;
+                    responseMessage.ReasonPhrase = "Category Deleted";
+                }
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
+        public Response<bool> DeleteProductImages(Product_Image product_Image) {
+
+            Response<bool> responseMessage = new Response<bool>();
+
+            try
+            {
+                var databaseResponse = db.DeleteAllProductImages(product_Image);
+
+                if (databaseResponse == false)
+                {
+                    responseMessage.returnData = false;
+                    responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.ReasonPhrase = "Failed To Delte";
+                }
+                else if (databaseResponse == true)
+                {
+                    responseMessage.returnData = true;
+                    responseMessage.status = HttpStatusCode.OK;
+                    responseMessage.ReasonPhrase = "Product Images Deleted";
+                }
+            }
+            catch (Exception e)
+            {
+                Errorhead(e);
+            }
+            return responseMessage;
+        }
 
         #endregion
 

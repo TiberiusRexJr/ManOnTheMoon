@@ -207,7 +207,7 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region RetrieveBy
-        public Product productsById(int id)
+        public Product GetproductById(int id)
         {
             Product product = null;
             try
