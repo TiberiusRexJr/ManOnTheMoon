@@ -15,23 +15,23 @@
                  </div>
                 <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for=" ">Name</label>
-                    <input class="form-control py-4" id=" " type=" " placeholder="placeholder" />
+                    <label class="small mb-1" for="product_name ">Name</label>
+                    <input class="form-control py-4" id="product_name " type="text" />
                  </div>
                  <div class="form-group ">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Description</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_description ">Description</label>
+                    <input class="form-control py-4" id="product_description " type="text" />
                  </div>
                 <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for=" ">UPC</label>
-                    <input class="form-control py-4" id=" " type=" " placeholder="placeholder" />
+                    <label class="small mb-1" for="product_upc ">UPC</label>
+                    <input class="form-control py-4" id="product_upc " type="text" />
                  </div>
                  <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for=" ">Brand</label>
-                    <select name="department" class="form-control selectpicker">
+                    <label class="small mb-1" for="product_brand ">Brand</label>
+                    <select name="product_brand" class="form-control selectpicker">
                   <option value="">Select your Department/Office</option>
                   <option>Department of Engineering</option>
                   <option>Department of Agriculture</option>
@@ -143,52 +143,52 @@
                  <h4>Dimensions</h4>
                  <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Length</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_length ">Length</label>
+                    <input class="form-control py-4" id="product_length " type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Width</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_width ">Width</label>
+                    <input class="form-control py-4" id="product_width " type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Height</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_height ">Height</label>
+                    <input class="form-control py-4" id="product_height " type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Weight</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_weight ">Weight</label>
+                    <input class="form-control py-4" id="product_weight " type="number" />
                  </div>
               </div>
               <div class="col-lg-6 col-md-6 bg-light">
                  <h4>Financial</h4>
                  <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Purchase Cost</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_purchase_cost ">Purchase Cost</label>
+                    <input class="form-control py-4" id="product_purchase_cost" type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Retail</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_retail ">Retail</label>
+                    <input class="form-control py-4" id="product_retail " type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">On Sale Price</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_sale_price ">On Sale Price</label>
+                    <input class="form-control py-4" id="product_sale_price " type="number" />
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">On Sale Status</label>
+                    <label class="small mb-1" for="product_sale_status ">On Sale Status</label>
                     <label class="radio-inline d-block"><input type="radio" name="optradio" checked>Option 1</label>
 <label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Stock Quantity</label>
-                    <input class="form-control py-4" id="product_id " type="number" />
+                    <label class="small mb-1" for="product_stock_quantity ">Stock Quantity</label>
+                    <input class="form-control py-4" id="product_stock_quantity " type="number" />
                  </div>
               </div>
 
@@ -199,7 +199,7 @@
                  <h4>Category</h4>
                  <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Category</label>
+                    <label class="small mb-1" for="product_category_select ">Category</label>
                           <select name="department" class="form-control selectpicker">
                   <option value="">Select your Department/Office</option>
                   <option>Department of Engineering</option>
@@ -209,7 +209,7 @@
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Sub-Category</label>
+                    <label class="small mb-1" for="product_sub_category ">Sub-Category</label>
                       <select name="department" class="form-control selectpicker">
                   <option value="">Select your Department/Office</option>
                   <option>Department of Engineering</option>
@@ -219,7 +219,7 @@
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Type</label>
+                    <label class="small mb-1" for="product_type ">Type</label>
                       <select name="department" class="form-control selectpicker">
                   <option value="">Select your Department/Office</option>
                   <option>Department of Engineering</option>
@@ -229,7 +229,7 @@
                  </div>
                   <div class="form-group">
                      <i class="fas fa-user"></i>
-                    <label class="small mb-1" for="product_id ">Sub-Type</label>
+                    <label class="small mb-1" for="product_sub_type ">Sub-Type</label>
                       <select name="department" class="form-control selectpicker">
                   <option value="">Select your Department/Office</option>
                   <option>Department of Engineering</option>
@@ -242,7 +242,7 @@
 
         </div>
         <div class="row justify-content-center ">
-            <button class="btn btn-primary btn-block my-2 mx-2 w-75">Save</button>
+            <button class="btn btn-primary btn-block my-2 mx-2 w-75" id="button_submit" type="button">Save</button>
         </div>
 
     </div>
