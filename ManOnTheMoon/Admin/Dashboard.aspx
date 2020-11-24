@@ -139,6 +139,75 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                Store Maintenance
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                            
+                            <div class="col-lg-6">
+                                <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                        Add Product
+                                      </button>
+                                        <div class="collapse" id="collapseExample">
+                                      <div class="card card-body">
+                                        <form>
+
+                                        </form>
+                                      </div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                       Add Brand
+                                      </button>
+                                        <div class="collapse" id="collapseExample1">
+                                      <div class="card card-body">
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputBrandName">Brand Name</label>
+                                                        <input class="form-control py-4" id="inputBrandName" type="text" placeholder="e.g Nike" />
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Submit</a></div>
+                                        </form>
+                                      </div>
+                                    </div>
+                            </div>
+                                    <div class="col-lg-6 mt-1">
+                                <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample1">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                       Add Category
+                                      </button>
+                                        <div class="collapse" id="collapseExample3">
+                                      <div class="card card-body">
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputCategoryName">Cateogry Name</label>
+                                                        <input class="form-control py-4" id="inputCategoryName" type="text" placeholder="e.g Nike" />
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Submit</a></div>
+                                        </form>
+                                      </div>
+                                    </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
