@@ -167,7 +167,7 @@
                                       </button>
                                         <div class="collapse" id="collapseExample1">
                                       <div class="card card-body">
-                                        <form>
+                                        <form id="form_brand_name">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -224,5 +224,35 @@
                 </footer>
             </div>
         </div>
+    <script>
+
+        //Function GetFormData-Start
+        function
+        //Function GetFormData-End
+        //BrandFrom-Start
+
+        const api_url = "";
+        const brand_form = document.getElementById('.form_brand_name')[0];
+        brand_form.h
+
+        const data = GetFormData(form);
+        const handleFormSubmit = event => {
+            event.preventDefault(); 
+
+        brand_form.addEventListener('submit', handleFormSubmit);
+
+        AjaxSend(data,api_url);
+        //BrandForm-End
+
+
+        //Function AjaxSend-Start
+        function AjaxSend(data, api_url)
+        {
+
+        }
+        //Function AjaxSend-End
+
+        
+    </script>
 </asp:Content>
 
