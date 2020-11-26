@@ -172,12 +172,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputBrandName">Brand Name</label>
-                                                        <input class="form-control py-4" id="inputBrandName" type="text" placeholder="e.g Nike" />
+                                                        <input class="form-control py-4" id="inputBrandName" name="Name" type="text" placeholder="e.g Nike" />
                                                     </div>
                                                 </div>
                                                 
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Submit</a></div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="SubmitNewBrand()">Submit</a></div>
                                         </form>
                                       </div>
                                     </div>
@@ -199,7 +199,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Submit</a></div>
+                                            <div class="form-group mt-4 mb-0"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                                         </form>
                                       </div>
                                     </div>
@@ -224,33 +224,59 @@
                 </footer>
             </div>
         </div>
+   
     <script>
+        $(document).ready(function ()
+        {
+        
+        })
+        
+        function SubmitNewBrand()
+        {
+            var api_url="44310/api/Admin/"
+            var newBrand = { Name: "" };
+            var data = $("#form_brand_name").serializeArray();
+            console.log(data);
+            newBrand.Name = $("#inputBrandName").val();
+            //AjaxSend(newBrand, api_url);
+        }
 
-        //Function GetFormData-Start
-        function
-        //Function GetFormData-End
-        //BrandFrom-Start
-
-        const api_url = "";
-        const brand_form = document.getElementById('.form_brand_name')[0];
-        brand_form.h
-
-        const data = GetFormData(form);
-        const handleFormSubmit = event => {
-            event.preventDefault(); 
-
-        brand_form.addEventListener('submit', handleFormSubmit);
-
-        AjaxSend(data,api_url);
-        //BrandForm-End
-
-
-        //Function AjaxSend-Start
+        //@returns{bool}
         function AjaxSend(data, api_url)
         {
+            var status = false;
+
+            if (data || api_url == null) {
+                alert("null!");
+            }
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: api_url + data,
+                    data: data,
+                    success: function () {
+
+                        status = true;
+                    },
+                    error: function ()
+                    {
+                        
+
+                    }
+
+                })
+
+                return status;
+            }
 
         }
-        //Function AjaxSend-End
+        function Messenger(data, element_id)
+        {
+            var html_Success = '<div class="alert alert-success" role="alert"> <strong>' + data + '</strong> Added</div>';
+            var html_failure = '<div class="alert alert-danger" role="alert"> <strong>' + data + '</strong> Added</div>';
+        }
+
 
         
     </script>

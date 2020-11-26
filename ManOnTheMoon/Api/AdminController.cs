@@ -118,6 +118,7 @@ namespace ManOnTheMoon.Api
 
         }
         [HttpPost]
+        [Route("api/Admin/PostBrand/{brand}")]
         public Response<Brand> PostBrand([FromBody] Brand brand)
         {
             Response<Brand> responseMessage = new Response<Brand>();
