@@ -226,6 +226,8 @@
         </div>
    
     <script>
+
+
         $(document).ready(function ()
         {
         
@@ -233,41 +235,50 @@
         
         function SubmitNewBrand()
         {
-            var api_url="44310/api/Admin/"
-            var newBrand = { Name: "" };
-            var data = $("#form_brand_name").serializeArray();
-            console.log(data);
-            newBrand.Name = $("#inputBrandName").val();
-            //AjaxSend(newBrand, api_url);
+            var api_url ="https://localhost:44310/api/Admin/PostBrand/brand"
+
+            var brand = new Object();
+            brand.Name = $("#inputBrandName").val();
+           
+            
+            AjaxSend(brand, api_url);
         }
 
         //@returns{bool}
-        function AjaxSend(data, api_url)
+        function AjaxSend(brand, api_url)
         {
             var status = false;
-
-            if (data || api_url == null) {
+            alert(JSON.stringify(brand));
+            if (brand==null || api_url == null) {
                 alert("null!");
             }
             else
             {
+                
                 $.ajax({
                     type: "POST",
-                    url: api_url + data,
-                    data: data,
-                    success: function () {
-
+                    url: api_url,
+                    data: JSON.stringify(brand),
+                    contentType:"application/json",
+                    success: function (data, textStatus, xhr) {
+                        console.log("Success:");
+                        console.log(data);
+                        alert(data.Status);
                         status = true;
                     },
-                    error: function ()
+                    error: function (jqxhr, textStatus, errorThrown)
                     {
-                        
-
+                        console.log("Fuck:");
+                        console.log(errorThrown);
+                        console.log(textStatus.toString);
                     }
 
+                }).fail(function(jqxhr,textStatus,errorThrown)
+                {
+                    alert(jqxhr.status + textStatus + errorThrown.toString); 
                 })
 
-                return status;
+               
             }
 
         }

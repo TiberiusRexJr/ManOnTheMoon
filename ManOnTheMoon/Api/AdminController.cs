@@ -63,6 +63,7 @@ namespace ManOnTheMoon.Api
 
         #region Post
         [HttpPost]
+        [Route("api/Admin/PostProduct/{product}")]
         public Response<Product> PostProduct([FromBody] Product product)
         {
             Response<Product> responseMessage = new Response<Product>();
@@ -90,6 +91,7 @@ namespace ManOnTheMoon.Api
             return responseMessage;
         }
         [HttpPost]
+        [Route("api/Admin/PostCategory/{category}")]
         public Response<Category> PostCategory([FromBody] Category category)
         {
             Response<Category> responseMessage = new Response<Category>();
@@ -146,6 +148,7 @@ namespace ManOnTheMoon.Api
             return responseMessage;
         }
         [HttpPost]
+        [Route("api/Admin/PostProductImages/{product_Images}")]
         public Response<Product_Image> PostProductImages([FromBody] Product_Image product_Images)
         {
 
