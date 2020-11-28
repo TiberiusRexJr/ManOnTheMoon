@@ -176,3 +176,21 @@ C:\Users\rouni\Desktop\CODE\Man On The Moon\ManOnTheMoon\ManOnTheMoon\bin\System
 C:\Users\rouni\Desktop\CODE\Man On The Moon\ManOnTheMoon\ManOnTheMoon\bin\System.Text.Json.xml
 C:\Users\rouni\Desktop\CODE\Man On The Moon\ManOnTheMoon\ManOnTheMoon\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\rouni\Desktop\CODE\Man On The Moon\ManOnTheMoon\ManOnTheMoon\bin\System.ValueTuple.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Buffers.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Memory.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Numerics.Vectors.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Text.Encodings.Web.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Text.Json.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.ValueTuple.dll
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Buffers.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Memory.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Numerics.Vectors.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Text.Encodings.Web.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Text.Json.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\rouni\Desktop\ManOnTheMoon\ManOnTheMoon\bin\System.ValueTuple.xml

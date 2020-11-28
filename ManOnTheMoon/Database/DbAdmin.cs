@@ -7,10 +7,15 @@ using ManOnTheMoon.Models;
 
 namespace ManOnTheMoon.Database
 {
-    public class DbAdmin: DbQueryProducts
+    public class DbAdmin : DbQueryProducts
     {
         #region Variables
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
+        public enum StringFormat
+        {
+            Database,
+            Presentation
+        }
         #endregion
 
         #region Methods
@@ -71,15 +76,16 @@ namespace ManOnTheMoon.Database
         public Brand CreateBrand(Brand brand)
         {
             Brand responseBrand = null;
+
             if (brand == null)
             {
                 return responseBrand;
             }
             try
             {
-                brand.Name = FormatStringForDatabase(brand.Name);
+                brand.Name = FormatString(brand.Name,(int)StringFormat.Database);
 
-                    db.Brands.InsertOnSubmit(brand);
+                db.Brands.InsertOnSubmit(brand);
                     db.SubmitChanges();
                     responseBrand = brand;
      
@@ -334,27 +340,39 @@ namespace ManOnTheMoon.Database
             return statusExist;
         }
         #endregion
+
         #region Utilities
-        public string FormatStringForDatabase(string item)
+        public string FormatString(string item,int mode)
         {
             string returnString = string.Empty;
+            char spliter=' ';
+            char formater = ' ';
+
+            switch(mode)
+            {
+                case 0:
+                    spliter = ' ';
+                    formater = '_';
+                break;
+                case 1:
+                    spliter = '_';
+                    formater = ' ';
+                    break;
+            }
 
             if(string.IsNullOrEmpty(item))
             {
                 return returnString;
             }
 
-            string[] stringItems = item.Split(null);
+            string[] stringItems = item.Split(spliter);
 
             foreach(string word in stringItems)
             {
-                returnString += char.ToUpper(word[0]) + word.Substring(1);
+                returnString += char.ToUpper(word[0]) + word.Substring(1)+formater;
             }
 
             return returnString;
-
-            
-
 
         }
         #endregion

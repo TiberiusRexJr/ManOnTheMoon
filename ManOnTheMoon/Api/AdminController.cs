@@ -127,10 +127,10 @@ namespace ManOnTheMoon.Api
 
             try
             {
-                brand.Name = db.FormatStringForDatabase(brand.Name);
-                var existBrandResponse = db.ExistByName(brand.Name,brand.GetType().Name);
+                brand.Name = db.FormatString(brand.Name);
+                var existBrandResponse = db.ExistByName(brand.Name, brand.GetType().Name);
 
-                if(existBrandResponse==false)
+                if (existBrandResponse == false)
                 {
                     var DbResponse = db.CreateBrand(brand);
                     if (DbResponse == null)
@@ -146,14 +146,14 @@ namespace ManOnTheMoon.Api
                         responseMessage.status = HttpStatusCode.Created;
                     }
                 }
-                else if(existBrandResponse==true) 
+                else if (existBrandResponse == true)
                 {
                     responseMessage.status = HttpStatusCode.Conflict;
                     responseMessage.returnData = null;
                     responseMessage.ReasonPhrase = "A Brand with that name Already Exist!";
                 }
-                
 
+                db.CreateBrand(brand);
                
             }
             catch (Exception e)
