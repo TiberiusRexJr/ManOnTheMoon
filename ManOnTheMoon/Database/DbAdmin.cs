@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ManOnTheMoon.Database;
 using ManOnTheMoon.Models;
+
 namespace ManOnTheMoon.Database
 {
     public class DbAdmin: DbQueryProducts
@@ -76,9 +77,12 @@ namespace ManOnTheMoon.Database
             }
             try
             {
-                db.Brands.InsertOnSubmit(brand);
-                db.SubmitChanges();
-                responseBrand = brand;
+                brand.Name = FormatStringForDatabase(brand.Name);
+
+                    db.Brands.InsertOnSubmit(brand);
+                    db.SubmitChanges();
+                    responseBrand = brand;
+     
             }
             catch (Exception e)
             {
@@ -299,6 +303,60 @@ namespace ManOnTheMoon.Database
             }
             return status;
             }
+        #endregion
+
+        #region Search
+         public bool ExistByName(string itemName,string Datatype)
+        {
+            bool statusExist = false;
+
+            if(itemName==null||Datatype==null)
+            {
+                return statusExist;
+            }
+
+            switch(Datatype)
+            {
+                case "Brand":var queryBrand = db.Brands.Where(b => b.Name==itemName).FirstOrDefault();
+                    if (queryBrand != null) { statusExist = true; };
+                    break;
+                case "Category":
+                    var queryCategory = db.Categories.Where(c => c.Name == itemName).FirstOrDefault();
+                    if (queryCategory!= null) { statusExist = true; };
+
+                    break;
+                case "Product":
+                    var queryProducts = db.Products.Where(p => p.Name == itemName).FirstOrDefault();
+                    if (queryProducts!= null) { statusExist = true; };
+
+                    break;
+            }
+            return statusExist;
+        }
+        #endregion
+        #region Utilities
+        public string FormatStringForDatabase(string item)
+        {
+            string returnString = string.Empty;
+
+            if(string.IsNullOrEmpty(item))
+            {
+                return returnString;
+            }
+
+            string[] stringItems = item.Split(null);
+
+            foreach(string word in stringItems)
+            {
+                returnString += char.ToUpper(word[0]) + word.Substring(1);
+            }
+
+            return returnString;
+
+            
+
+
+        }
         #endregion
 
         //upWork.com

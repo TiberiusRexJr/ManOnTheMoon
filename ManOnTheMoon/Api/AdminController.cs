@@ -124,22 +124,37 @@ namespace ManOnTheMoon.Api
         public Response<Brand> PostBrand([FromBody] Brand brand)
         {
             Response<Brand> responseMessage = new Response<Brand>();
+
             try
             {
-                var DbResponse = db.CreateBrand(brand);
+                brand.Name = db.FormatStringForDatabase(brand.Name);
+                var existBrandResponse = db.ExistByName(brand.Name,brand.GetType().Name);
 
-                if (DbResponse == null)
+                if(existBrandResponse==false)
                 {
-                    responseMessage.returnData = null;
-                    responseMessage.ReasonPhrase = "Database Responsed With Null";
+                    var DbResponse = db.CreateBrand(brand);
+                    if (DbResponse == null)
+                    {
+                        responseMessage.returnData = null;
+                        responseMessage.ReasonPhrase = "Database Responsed With Null";
+                        responseMessage.status = HttpStatusCode.Conflict;
+                    }
+                    else
+                    {
+                        responseMessage.returnData = DbResponse;
+                        responseMessage.ReasonPhrase = "SuccessFully Inserted";
+                        responseMessage.status = HttpStatusCode.Created;
+                    }
+                }
+                else if(existBrandResponse==true) 
+                {
                     responseMessage.status = HttpStatusCode.Conflict;
+                    responseMessage.returnData = null;
+                    responseMessage.ReasonPhrase = "A Brand with that name Already Exist!";
                 }
-                else
-                {
-                    responseMessage.returnData = DbResponse;
-                    responseMessage.ReasonPhrase = "SuccessFully Inserted";
-                    responseMessage.status = HttpStatusCode.Created;
-                }
+                
+
+               
             }
             catch (Exception e)
             {

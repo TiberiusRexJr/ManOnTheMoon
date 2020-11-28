@@ -225,8 +225,28 @@
             </div>
         </div>
    
-    <script>
+    <div class="modal fade" id="ModalAdminMessenger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" id="ModalAdminMessengerHeader">
+        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="ModalAdminMessengerBody">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+    <script>
+        
 
         $(document).ready(function ()
         {
@@ -236,21 +256,21 @@
         function SubmitNewBrand()
         {
             var api_url ="https://localhost:44310/api/Admin/PostBrand/brand"
+            var crud_type = "Added";
 
             var brand = new Object();
             brand.Name = $("#inputBrandName").val();
            
             
-            AjaxSend(brand, api_url);
+            AjaxSend(brand, api_url,crud_type);
         }
-
-        //@returns{bool}
-        function AjaxSend(brand, api_url)
+        function AjaxSend(brand, api_url,crud_type)
         {
             var status = false;
-            alert(JSON.stringify(brand));
-            if (brand==null || api_url == null) {
-                alert("null!");
+            if (brand == null || api_url == null)
+            {
+                //Messenger("Empty Values Please try again", status);
+                alert("null");
             }
             else
             {
@@ -260,17 +280,32 @@
                     url: api_url,
                     data: JSON.stringify(brand),
                     contentType:"application/json",
-                    success: function (data, textStatus, xhr) {
-                        console.log("Success:");
-                        console.log(data);
-                        alert(data.Status);
+                    success: function (data, textStatus, xhr,responseText,response) {
                         status = true;
+                        alert(data.Name + data.Id+ data.ReasonPhrase+ data.status);
+                        alert(textStatus);
+                        alert(xhr.status);
+                        alert(xhr.statusText);
+                        alert(textStatus);
+                        alert(data.responseText);
+                        alert(response.responseText);
+                        alert(response.responseJSON);
+                        alert(response.textStatus)
+                        alert(response.statusText);
+
+
+
+
+                        Messenger(data.Name, crud_type, status);
                     },
                     error: function (jqxhr, textStatus, errorThrown)
                     {
+                        status = false;
                         console.log("Fuck:");
                         console.log(errorThrown);
                         console.log(textStatus.toString);
+                        Messenger(brand.Name, crud_type, status,errorThrown);
+
                     }
 
                 }).fail(function(jqxhr,textStatus,errorThrown)
@@ -282,11 +317,39 @@
             }
 
         }
-        function Messenger(data, element_id)
+        function Messenger(message,crud_type,status,errorMessage)
         {
-            var html_Success = '<div class="alert alert-success" role="alert"> <strong>' + data + '</strong> Added</div>';
-            var html_failure = '<div class="alert alert-danger" role="alert"> <strong>' + data + '</strong> Added</div>';
+            var html_Success = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Successfully"</p>'
+
+            var html_Failure = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Unsuccessfully"</p>' +
+                '<p class="font-weight-bold">' + errorMessage + '</p>'
+
+            if (status ==true)
+            {
+                alert("True");
+                $("#ModalAdminMessengerHeader").removeClass("bg-danger");
+                $("#ModalAdminMessengerHeader").addClass("bg-success");
+                $("#ModalAdminMessengerBody").append(html_Success);
+                
+
+            }
+            else if (status == false)
+            {
+                alert("false");
+
+                $("#ModalAdminMessengerHeader").removeClass("bg-success");
+                $("#ModalAdminMessengerHeader").addClass("bg-danger");
+                $("#ModalAdminMessengerBody").append(html_Failure);
+
+            }
+            
+            $("#ModalAdminMessenger").modal('show');
+            $("#ModalAdminMessenger").modal('hide');
+            
+
+            
         }
+
 
 
         
