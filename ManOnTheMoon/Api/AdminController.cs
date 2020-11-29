@@ -494,7 +494,9 @@ namespace ManOnTheMoon.Api
             {
                 try
                 {
-                    if(db.ExistByName(itemName, tabletoSearch))
+                    var searchItemFormatted = db.FormatString(itemName,DbAdmin.StringFormat.ForDatabase);
+
+                    if(db.ExistByName(searchItemFormatted, tabletoSearch))
                     {
                         responseMessage.returnData = true;
                         responseMessage.status= HttpStatusCode.Found;
@@ -514,6 +516,7 @@ namespace ManOnTheMoon.Api
         public DbAdmin.TableType ReturnTableType(string tableType)
         {
             DbAdmin.TableType returnTable = null;
+
             switch(tableType)
             {
                 case "Brand":
