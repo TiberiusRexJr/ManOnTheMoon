@@ -14,6 +14,7 @@ namespace ManOnTheMoon.Database
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
      
         #endregion
+
         #region NestedClasses
         public class StringFormat
         {
@@ -112,20 +113,23 @@ namespace ManOnTheMoon.Database
             {
                 return responseBrand;
             }
-            try
+            if (ExistByName(brand.Name, DbAdmin.TableType.Brand))
             {
-                brand.Name = FormatString(brand.Name,(int)StringFormat.Database);
-
-                db.Brands.InsertOnSubmit(brand);
+                return responseBrand;
+            }
+                try
+                {
+                    brand.Name = FormatString(brand.Name, DbAdmin.StringFormat.ForDatabase);
+                    db.Brands.InsertOnSubmit(brand);
                     db.SubmitChanges();
                     responseBrand = brand;
-     
-            }
-            catch (Exception e)
-            {
-                Errorhead(e);
+                }
+                catch (Exception e)
+                {
+                    Errorhead(e);
 
-            }
+                }
+            
             return responseBrand;
         }
         public Product_Image CreateProductImageRecord(Product_Image product_Images)
@@ -346,24 +350,30 @@ namespace ManOnTheMoon.Database
          public bool ExistByName(string itemName,DbAdmin.TableType tableType)
         {
             bool statusExist = false;
-            
-            if(string.IsNullOrEmpty(itemName)||tableType==null)
+            string formattedSearchItem = string.Empty;
+
+
+            if (string.IsNullOrEmpty(itemName)||tableType==null)
             {
                 return statusExist;
+            }
+            else
+            {
+                formattedSearchItem = FormatString(itemName, DbAdmin.StringFormat.ForDatabase);
             }
             
             switch(tableType.Value)
             {
-                case "Brand":var queryBrand = db.Brands.Where(b => b.Name==itemName).FirstOrDefault();
+                case "Brand":var queryBrand = db.Brands.Where(b => b.Name== formattedSearchItem).FirstOrDefault();
                     if (queryBrand != null) { statusExist = true; };
                     break;
                 case "Category":
-                    var queryCategory = db.Categories.Where(c => c.Name == itemName).FirstOrDefault();
+                    var queryCategory = db.Categories.Where(c => c.Name == formattedSearchItem).FirstOrDefault();
                     if (queryCategory!= null) { statusExist = true; };
 
                     break;
                 case "Product":
-                    var queryProducts = db.Products.Where(p => p.Name == itemName).FirstOrDefault();
+                    var queryProducts = db.Products.Where(p => p.Name == formattedSearchItem).FirstOrDefault();
                     if (queryProducts!= null) { statusExist = true; };
 
                     break;
