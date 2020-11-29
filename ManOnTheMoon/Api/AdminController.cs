@@ -154,7 +154,7 @@ namespace ManOnTheMoon.Api
                 }
 
                 db.CreateBrand(brand);
-               
+
             }
             catch (Exception e)
             {
@@ -465,6 +465,72 @@ namespace ManOnTheMoon.Api
             return responseMessage;
         }
 
+        #endregion
+
+        #region Search
+        public Response<bool> ExistByName(string itemName, string tableType)
+        {
+            Response<bool> responseMessage = new Response<bool>();
+
+            responseMessage.returnData = false;
+            responseMessage.status = HttpStatusCode.NotFound;
+
+            if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(tableType))
+            {
+                responseMessage.status = HttpStatusCode.BadRequest;
+
+                return responseMessage;
+            }
+
+            DbAdmin.TableType tabletoSearch = ReturnTableType(tableType);
+
+            if (tabletoSearch == null)
+            {
+                responseMessage.status = HttpStatusCode.BadRequest;
+
+                return responseMessage;
+            }
+            else
+            {
+                try
+                {
+                    if(db.ExistByName(itemName, tabletoSearch))
+                    {
+                        responseMessage.returnData = true;
+                        responseMessage.status= HttpStatusCode.Found;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Errorhead(e);
+                }
+
+            }
+            return responseMessage;
+        }
+        #endregion
+
+        #region Utilities
+        public DbAdmin.TableType ReturnTableType(string tableType)
+        {
+            DbAdmin.TableType returnTable = null;
+            switch(tableType)
+            {
+                case "Brand":
+                     returnTable= DbAdmin.TableType.Brand;
+                    break;
+                case "Category":
+                    returnTable= DbAdmin.TableType.Category;
+                    break;
+                case "Product":
+                    returnTable= DbAdmin.TableType.Product;
+                    break;
+                default:
+                    returnTable = null;
+                    break;
+            }
+            return returnTable;
+        }
         #endregion
 
     }

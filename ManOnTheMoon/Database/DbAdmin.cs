@@ -9,15 +9,45 @@ namespace ManOnTheMoon.Database
 {
     public class DbAdmin : DbQueryProducts
     {
+        
         #region Variables
         private DataBaseModelsDataContext db = new DataBaseModelsDataContext();
-        public enum StringFormat
+     
+        #endregion
+        #region NestedClasses
+        public class StringFormat
         {
-            Database,
-            Presentation
+            #region Constructor
+            private StringFormat(string value) { Value = value; }
+
+            #endregion
+            #region Variables
+            public string Value { get; set; }
+            #endregion
+            #region Properties
+            public static StringFormat ForDatabase { get { return new StringFormat("ForDatabase"); } }
+            public static StringFormat ForPresentation { get { return new StringFormat("ForPresentation"); } }
+
+            #endregion
+        }
+        public class TableType
+        {
+            #region Constructor
+            private TableType(string value) { Value = value; }
+            #endregion
+            #region Variables
+            public string Value { get; set; }
+            #endregion
+
+            #region Properties
+            public static TableType Brand { get { return new TableType("Brand"); } }
+            public static TableType Category { get { return new TableType("Category"); } }
+            public static TableType Product { get { return new TableType("Product"); } }
+
+            #endregion
         }
         #endregion
-
+        
         #region Methods
         public new void Errorhead(Exception e)
         {
@@ -29,6 +59,7 @@ namespace ManOnTheMoon.Database
             Console.WriteLine("Error Object/Application: " + e.Source.ToString());
             Console.WriteLine("Error StackTrace: " + e.StackTrace);
         }
+
         #endregion
 
         #region Create
@@ -118,7 +149,7 @@ namespace ManOnTheMoon.Database
         }
 
         #endregion
-
+        
         #region Update
             public bool UpdateProduct(Product product)
             {
@@ -312,16 +343,16 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region Search
-         public bool ExistByName(string itemName,string Datatype)
+         public bool ExistByName(string itemName,DbAdmin.TableType tableType)
         {
             bool statusExist = false;
-
-            if(itemName==null||Datatype==null)
+            
+            if(string.IsNullOrEmpty(itemName)||tableType==null)
             {
                 return statusExist;
             }
-
-            switch(Datatype)
+            
+            switch(tableType.Value)
             {
                 case "Brand":var queryBrand = db.Brands.Where(b => b.Name==itemName).FirstOrDefault();
                     if (queryBrand != null) { statusExist = true; };
@@ -342,28 +373,31 @@ namespace ManOnTheMoon.Database
         #endregion
 
         #region Utilities
-        public string FormatString(string item,int mode)
+        public string FormatString(string item, DbAdmin.StringFormat mode)
         {
             string returnString = string.Empty;
+
             char spliter=' ';
             char formater = ' ';
 
-            switch(mode)
+            if (string.IsNullOrEmpty(item))
             {
-                case 0:
+                return returnString;
+            }
+
+            switch (mode.Value)
+            {
+                case "ForDatabase":
                     spliter = ' ';
                     formater = '_';
                 break;
-                case 1:
+                case "ForPresentation":
                     spliter = '_';
                     formater = ' ';
                     break;
             }
 
-            if(string.IsNullOrEmpty(item))
-            {
-                return returnString;
-            }
+            
 
             string[] stringItems = item.Split(spliter);
 
