@@ -62,6 +62,7 @@ namespace ManOnTheMoon.Api
         #endregion
 
         #region Post
+
         [HttpPost]
         [Route("api/Admin/PostProduct/{product}")]
         public Response<Product> PostProduct([FromBody] Product product)
@@ -90,6 +91,7 @@ namespace ManOnTheMoon.Api
             }
             return responseMessage;
         }
+
         [HttpPost]
         [Route("api/Admin/PostCategory/{category}")]
         public Response<Category> PostCategory([FromBody] Category category)
@@ -119,49 +121,46 @@ namespace ManOnTheMoon.Api
             return responseMessage;
 
         }
+
         [HttpPost]
         [Route("api/Admin/PostBrand/{brand}")]
         public Response<Brand> PostBrand([FromBody] Brand brand)
         {
             Response<Brand> responseMessage = new Response<Brand>();
 
-            try
+            if(brand==null)
             {
-                brand.Name = db.FormatString(brand.Name);
-                var existBrandResponse = db.ExistByName(brand.Name, brand.GetType().Name);
-
-                if (existBrandResponse == false)
-                {
-                    var DbResponse = db.CreateBrand(brand);
-                    if (DbResponse == null)
-                    {
-                        responseMessage.returnData = null;
-                        responseMessage.ReasonPhrase = "Database Responsed With Null";
-                        responseMessage.status = HttpStatusCode.Conflict;
-                    }
-                    else
-                    {
-                        responseMessage.returnData = DbResponse;
-                        responseMessage.ReasonPhrase = "SuccessFully Inserted";
-                        responseMessage.status = HttpStatusCode.Created;
-                    }
-                }
-                else if (existBrandResponse == true)
-                {
-                    responseMessage.status = HttpStatusCode.Conflict;
-                    responseMessage.returnData = null;
-                    responseMessage.ReasonPhrase = "A Brand with that name Already Exist!";
-                }
-
-                db.CreateBrand(brand);
-               
+                responseMessage.status = HttpStatusCode.BadRequest;
+                responseMessage.returnData = null;
             }
-            catch (Exception e)
+            else
             {
-                Errorhead(e);
+                try
+                {
+
+                        var DbResponse = db.CreateBrand(brand);
+
+                        if (DbResponse == null)
+                        {
+                            responseMessage.returnData = null;
+                                  responseMessage.status=HttpStatusCode.InternalServerError;
+                        }
+                        else
+                        {
+                            responseMessage.returnData = DbResponse;
+                            
+                            responseMessage.status = HttpStatusCode.Created;
+                        }
+                }
+                catch (Exception e)
+                {
+                    Errorhead(e);
+                }
             }
+           
             return responseMessage;
         }
+
         [HttpPost]
         [Route("api/Admin/PostProductImages/{product_Images}")]
         public Response<Product_Image> PostProductImages([FromBody] Product_Image product_Images)
@@ -195,7 +194,7 @@ namespace ManOnTheMoon.Api
         }
         #endregion
 
-        #region Put
+                #region Put
         [HttpPut]
         public Response<Product> PutProduct(Product product)
         {
@@ -465,6 +464,75 @@ namespace ManOnTheMoon.Api
             return responseMessage;
         }
 
+        #endregion
+
+        #region Search
+        [HttpGet]
+        [Route("api/Admin/ExistByName/{itemName}/{tableType}")]
+        public Response<bool> ExistByName([FromUri] string itemName,[FromUri] string tableType)
+        {
+            Response<bool> responseMessage = new Response<bool>();
+
+            responseMessage.returnData = false;
+            responseMessage.status = HttpStatusCode.NotFound;
+
+            if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(tableType))
+            {
+                responseMessage.status = HttpStatusCode.BadRequest;
+
+                return responseMessage;
+            }
+
+            DbAdmin.TableType tabletoSearch = ReturnTableType(tableType);
+
+            if (tabletoSearch == null)
+            {
+                responseMessage.status = HttpStatusCode.BadRequest;
+                return responseMessage;
+            }
+            else
+            {
+                try
+                {
+
+                    if(db.ExistByName(itemName, tabletoSearch))
+                    {
+                        responseMessage.returnData = true;
+                        responseMessage.status= HttpStatusCode.Found;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Errorhead(e);
+                }
+
+            }
+            return responseMessage;
+        }
+        #endregion
+
+        #region Utilities
+        public DbAdmin.TableType ReturnTableType(string tableType)
+        {
+            DbAdmin.TableType returnTable = null;
+
+            switch(tableType)
+            {
+                case "Brand":
+                     returnTable= DbAdmin.TableType.Brand;
+                    break;
+                case "Category":
+                    returnTable= DbAdmin.TableType.Category;
+                    break;
+                case "Product":
+                    returnTable= DbAdmin.TableType.Product;
+                    break;
+                default:
+                    returnTable = null;
+                    break;
+            }
+            return returnTable;
+        }
         #endregion
 
     }

@@ -249,6 +249,8 @@
 import { error } from "jquery";
 
         
+       
+
 
         $(document).ready(function ()
         {
@@ -308,18 +310,53 @@ import { error } from "jquery";
         //ModalMessenger-End
         function SubmitNewBrand()
         {
-            var api_url ="https://localhost:44310/api/Admin/PostBrand/brand"
-            var crud_type = "Added";
-
-            var brand = new Object();
-            brand.Name = $("#inputBrandName").val();
-           
+            var API_POSTBRAND_URL = "https://localhost:44310/api/Admin/PostBrand/brand";
             
-            AjaxSend(brand, api_url,crud_type);
+            var crudType = "Created";
+            var tableType = "Brand";
+            var brand = new Object();
+
+            brand.Name = $("#inputBrandName").val();
         }
-        function AjaxSend(brand, api_url,crud_type)
+        function SubmitNewCategory()
+        {
+            var API_POSTCATEGORY_URL = "https://localhost:44310/api/Admin/PostCategory/category";
+            var crudType = "created";
+            var tableType = "Category";
+
+            var category = new Object();
+
+            category.Name = $("#inputCategoryName").val();
+        }
+        function AjaxExistByName(item, tableType)
+        {
+            const API_EXISTBYNAME_URL = "https://localhost:44310/api/Admin/ExistByName/";
+
+            $.ajax({
+                type: "GET",
+                url: API_EXISTBYNAME_URL + item + "/" + tableType,
+                statusCode:
+                {
+                    404: function () { },
+                    400: function () { },
+                    302: function () { }
+
+                },
+                success: function (data,textStatus,jqXHR)
+                {
+                         
+                },
+                error: function (jqxhr, textStatus, errorThrown)
+                {
+
+                }
+            })
+        }
+
+        function AjaxPost(apiUrl,data,crud_type)
         {
             var status = false;
+
             if (brand == null || api_url == null)
             {
                 //Messenger("Empty Values Please try again", status);
@@ -370,8 +407,24 @@ import { error } from "jquery";
             }
 
         }
+
         function Messenger(message,crud_type,status,errorMessage)
         {
+            var htmlHeaderSuccessMessage = ' ';
+            var htmlHeaderFailureMessage= ' ';
+
+            var htmlHeaderSuccessClass = ' ';
+            var htmlHeaderFailureClass = ' ';
+
+            var htmlBodySuccessClass = ' ';
+            var htmlBodyFailureClass = ' ';
+
+            var htmlBodySuccessMessage = ' ';
+            var htmlBodyFailureMessage = ' ';
+
+
+
+
             var html_Success = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Successfully"</p>'
 
             var html_Failure = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Unsuccessfully"</p>' +
