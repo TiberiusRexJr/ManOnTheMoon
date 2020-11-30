@@ -246,13 +246,66 @@
 </div>
 
     <script>
+import { error } from "jquery";
+
         
 
         $(document).ready(function ()
         {
         
         })
-        
+
+        //AjaxC.R.U.D
+        AjaxPost(data, senderId)
+        {
+            const CRUD_TYPE = "";
+            const API_POST_=" ";
+
+            if (data == null || senderId == null)
+            {
+                ModalMessenger(null, false, CRUD_TYPE);
+            }
+
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: API_POST_,
+                success: function (response, jqXHR, data) { },
+                statusCode:
+                {
+                    400: function (response, jqXHR, data) {
+                        ModalMessenger(null, false, CRUD_TYPE);
+                    },
+                    500: function (response, jqXHR, data) {
+                        var successStatus = false;
+                        ModalMessenger(null, false, CRUD_TYPE);
+                    },
+                    201: function (response, jqXHR, data) {
+                        var successStatus = true;
+                        ModalMessenger(data, successStatus, CRUD_TYPE);
+                    }
+                },
+                error: function (response, jqXHR, data)
+                {
+                    ModalMessenger(data, false, CRUD_TYPE);
+                }
+            })
+        }
+        //AjaxC.R.U.D-End
+
+        //ModalMessenger
+        function ModalMessenger(data, successStatus, crudType)
+        {
+            var htmlModalHeaderElement = "";
+            var htmlModalBodyElement = "";
+            <p class="text-justify"></p>
+            if (data == null || successStatus == false)
+            {
+                $("#").removeClass("");
+                $("#").addClass("");
+            }
+        }
+        //ModalMessenger-End
         function SubmitNewBrand()
         {
             var api_url ="https://localhost:44310/api/Admin/PostBrand/brand"
