@@ -25,6 +25,7 @@
     <%Scripts.Render("~/bundles/modernizr");%>
    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../Scripts/Admin/jquery.serializeToJSON.js"></script>
 </head>
 <body class="sb-nav-fixed" style="background-color:seagreen;">
    

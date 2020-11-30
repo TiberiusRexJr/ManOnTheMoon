@@ -162,7 +162,7 @@ namespace ManOnTheMoon.Api
         }
 
         [HttpPost]
-        [Route("api/Admin/PostProductImages/{product_Images}")]
+        [Route("api/Admin/PostProductImageURLs/{product_Images}")]
         public Response<Product_Image> PostProductImages([FromBody] Product_Image product_Images)
         {
 

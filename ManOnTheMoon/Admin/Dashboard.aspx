@@ -172,12 +172,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputBrandName">Brand Name</label>
-                                                        <input class="form-control py-4" id="inputBrandName" name="Name" type="text" placeholder="e.g Nike" />
+                                                        <input class="form-control py-4" id="inputBrandName" name="Name" type="text" value="" placeholder="e.g Nike" />
                                                     </div>
                                                 </div>
                                                 
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="SubmitNewBrand()">Submit</a></div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" id="ButtonPostBrand" onclick="AjaxPost(this.id,$('#form_brand_name').serializeToJSON())">Submit</a></div>
                                         </form>
                                       </div>
                                     </div>
@@ -246,10 +246,6 @@
 </div>
 
     <script>
-import { error } from "jquery";
-
-        
-       
 
 
         $(document).ready(function ()
@@ -258,88 +254,147 @@ import { error } from "jquery";
         })
 
         //AjaxC.R.U.D
-        AjaxPost(data, senderId)
+       function AjaxPost(senderId,data)
         {
-            const CRUD_TYPE = "";
-            const API_POST_=" ";
+            const CRUD_TYPE = "Posted";
 
-            if (data == null || senderId == null)
+            const API_POST_PRODUCT = " https://localhost:44310/api/Admin/PostProduct/product";
+            const API_POST_CATEGORY = " https://localhost:44310/api/Admin/PostCategory/category";
+            const API_POST_BRAND = " https://localhost:44310/api/Admin/PostBrand/brand";
+            const API_POST_PRODUCT_IMAGES = " https://localhost:44310/api/Admin/PostProductImageURLs/product_Images";
+
+           var sendToAdress = "";
+           var tableType = " ";
+
+           if (data == null || senderId == null)
+           {
+                ModalMessenger(null, false, CRUD_TYPE,"null parameters provided");
+           }
+           
+            else
             {
-                ModalMessenger(null, false, CRUD_TYPE);
-            }
+                switch (senderId)
+                {
+                    case "ButtonPostProduct":
+                        sendToAdress = API_POST_PRODUCT;
+                        tableType = "Product";
+                            break;
+                    case "ButtonPostCategory":
+                        sendToAdress = API_POST_CATEGORY;
+                        tableType="Cateogry"
+                            break;
+                    case "ButtonPostBrand":
+                        sendToAdress = API_POST_BRAND;
+                        tableType = "Brand";
+                            break;
+                    case "ButonPostProductImageUrls":
+                        sendToAdress = API_POST_PRODUCT_IMAGES;
+                        tableType = "ProductImagesUrl";
+                        break;
+                    default: ModalMessenger(data, false, CRUD_TYPE, "could not resolve api address to send data too");
+                }
+           }
+           if (AjaxExistByName(data.Name, tableType))
+           {
+               ModalMessenger(data, false, CRUD_TYPE, data.Name +" Already Exist!");
+           }
 
             $.ajax({
                 type: "POST",
                 data: data,
-                url: API_POST_,
+                url: sendToAdress,
                 success: function (response, jqXHR, data) { },
                 statusCode:
                 {
-                    400: function (response, jqXHR, data) {
-                        ModalMessenger(null, false, CRUD_TYPE);
+                    400: function (response, jqXHR) {
+                        ModalMessenger(data, false, CRUD_TYPE,"400-BadRequest");
                     },
-                    500: function (response, jqXHR, data) {
+                    500: function (response, jqXHR) {
                         var successStatus = false;
-                        ModalMessenger(null, false, CRUD_TYPE);
+                        ModalMessenger(data, false, CRUD_TYPE,"500-Internal Server Error");
                     },
-                    201: function (response, jqXHR, data) {
+                    201: function (response, jqXHR) {
                         var successStatus = true;
-                        ModalMessenger(data, successStatus, CRUD_TYPE);
+                        ModalMessenger(data, successStatus, CRUD_TYPE,"201-SuccessFully Created");
                     }
                 },
                 error: function (response, jqXHR, data)
                 {
-                    ModalMessenger(data, false, CRUD_TYPE);
+                    ModalMessenger(data, false, CRUD_TYPE,"AjaxPost Errror");
                 }
             })
         }
         //AjaxC.R.U.D-End
 
         //ModalMessenger
-        function ModalMessenger(data, successStatus, crudType)
+        function ModalMessenger(data, successStatus, crudType,serverMessage)
         {
-            var htmlModalHeaderElement = "";
-            var htmlModalBodyElement = "";
-            <p class="text-justify"></p>
-            if (data == null || successStatus == false)
+            var successOrFailureMessage = " ";
+            var successOrFailureMessageHeader = " ";
+
+           
+           
+            if (data == null || successStatus === false)
             {
-                $("#").removeClass("");
-                $("#").addClass("");
+                $("#ModalAdminMessengerHeader").removeClass("bg-success");
+                $("#ModalAdminMessengerHeader").addClass("bg-danger");
+
+                $("#ModalAdminMessengerHeader").empty()
+                $("#ModalAdminMessengerBody").empty()
+
+
+                successOrFailureMessage = "UnSuccessfully";
+                successOrFailureMessageHeader = "Failed" + "(" + serverMessage + ")";
             }
+            else if (successStatus === true)
+            {
+                $("#ModalAdminMessengerHeader").removeClass("bg-danger");
+                $("#ModalAdminMessengerHeader").addClass("bg-success");
+
+                $("#ModalAdminMessengerHeader").empty()
+                $("#ModalAdminMessengerBody").empty()
+
+                successOrFailureMessage = "Successfully";
+                successOrFailureMessageHeader = "Success!";
+
+            }
+
+            var htmlModalBodyElementMessage = '<p class="text-justify">' + data.Name + '" "' + crudType + '" "' + successOrFailureMessage + '</p>';
+
+            var htmlModalBodyElementHeader = '<h4>' + successOrFailureMessageHeader +'</h4>';
+
+
+            $("#ModalAdminMessengerBody").append(htmlModalBodyElementMessage);
+            $("#ModalAdminMessengerHeader").append(htmlModalBodyElementHeader);
+
+            $('#ModalAdminMessenger').modal('show');
+            $('#ModalAdminMessenger').modal('hide');
+
         }
         //ModalMessenger-End
-        function SubmitNewBrand()
+        function SubmitNewBrand(id,data)
         {
-            var API_POSTBRAND_URL = "https://localhost:44310/api/Admin/PostBrand/brand";
+
+            console.log(data);
+            console.log(data
+                .Name);
             
-            var crudType = "Created";
-            var tableType = "Brand";
-            var brand = new Object();
-
-            brand.Name = $("#inputBrandName").val();
         }
-        function SubmitNewCategory()
-        {
-            var API_POSTCATEGORY_URL = "https://localhost:44310/api/Admin/PostCategory/category";
-            var crudType = "created";
-            var tableType = "Category";
-
-            var category = new Object();
-
-            category.Name = $("#inputCategoryName").val();
-        }
-        function AjaxExistByName(item, tableType)
+       
+        function AjaxExistByName(dataObj, tableType)
         {
             const API_EXISTBYNAME_URL = "https://localhost:44310/api/Admin/ExistByName/";
 
             $.ajax({
                 type: "GET",
-                url: API_EXISTBYNAME_URL + item + "/" + tableType,
+                url: API_EXISTBYNAME_URL + dataObj.Name + "/" + tableType,
                 statusCode:
                 {
-                    404: function () { },
-                    400: function () { },
-                    302: function () { }
+                    404: function() {return false},
+
+                    400: function() { return false},
+
+                    302: function () { return true}
 
                 },
                 success: function (data,textStatus,jqXHR)
@@ -353,108 +408,9 @@ import { error } from "jquery";
             })
         }
 
-        function AjaxPost(apiUrl,data,crud_type)
-        {
-            var status = false;
+        
 
-            if (brand == null || api_url == null)
-            {
-                //Messenger("Empty Values Please try again", status);
-                alert("null");
-            }
-            else
-            {
-                
-                $.ajax({
-                    type: "POST",
-                    url: api_url,
-                    data: JSON.stringify(brand),
-                    contentType:"application/json",
-                    success: function (data, textStatus, xhr,responseText,response) {
-                        status = true;
-                        alert(data.Name + data.Id+ data.ReasonPhrase+ data.status);
-                        alert(textStatus);
-                        alert(xhr.status);
-                        alert(xhr.statusText);
-                        alert(textStatus);
-                        alert(data.responseText);
-                        alert(response.responseText);
-                        alert(response.responseJSON);
-                        alert(response.textStatus)
-                        alert(response.statusText);
-
-
-
-
-                        Messenger(data.Name, crud_type, status);
-                    },
-                    error: function (jqxhr, textStatus, errorThrown)
-                    {
-                        status = false;
-                        console.log("Fuck:");
-                        console.log(errorThrown);
-                        console.log(textStatus.toString);
-                        Messenger(brand.Name, crud_type, status,errorThrown);
-
-                    }
-
-                }).fail(function(jqxhr,textStatus,errorThrown)
-                {
-                    alert(jqxhr.status + textStatus + errorThrown.toString); 
-                })
-
-               
-            }
-
-        }
-
-        function Messenger(message,crud_type,status,errorMessage)
-        {
-            var htmlHeaderSuccessMessage = ' ';
-            var htmlHeaderFailureMessage= ' ';
-
-            var htmlHeaderSuccessClass = ' ';
-            var htmlHeaderFailureClass = ' ';
-
-            var htmlBodySuccessClass = ' ';
-            var htmlBodyFailureClass = ' ';
-
-            var htmlBodySuccessMessage = ' ';
-            var htmlBodyFailureMessage = ' ';
-
-
-
-
-            var html_Success = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Successfully"</p>'
-
-            var html_Failure = '<p class="text-justify font-italic">' + message + " " + crud_type + '" "' + '"Unsuccessfully"</p>' +
-                '<p class="font-weight-bold">' + errorMessage + '</p>'
-
-            if (status ==true)
-            {
-                alert("True");
-                $("#ModalAdminMessengerHeader").removeClass("bg-danger");
-                $("#ModalAdminMessengerHeader").addClass("bg-success");
-                $("#ModalAdminMessengerBody").append(html_Success);
-                
-
-            }
-            else if (status == false)
-            {
-                alert("false");
-
-                $("#ModalAdminMessengerHeader").removeClass("bg-success");
-                $("#ModalAdminMessengerHeader").addClass("bg-danger");
-                $("#ModalAdminMessengerBody").append(html_Failure);
-
-            }
-            
-            $("#ModalAdminMessenger").modal('show');
-            $("#ModalAdminMessenger").modal('hide');
-            
-
-            
-        }
+        
 
 
 

@@ -172,6 +172,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Admin\Drag&amp;Drop.js" />
+    <Content Include="Scripts\Admin\jquery.serializeToJSON.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
